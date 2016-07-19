@@ -198,7 +198,7 @@ In the GAModel each individual represents an entire forecast model. Each gene of
 
 \begin{algorithm}\label{inversePoisson}
   \caption{Obtain a Poisson deviate from a $[0,1)$ value}
-  \label{InversePoisson}[!ht]
+  \label{InversePoisson}[H]
   \begin{algorithmic}
     \STATE $L \gets \exp{(-\mu)}, k \gets 1, prob \gets 1 * x$
     \REPEAT 
@@ -284,7 +284,7 @@ individual of model for the $\lambda$ values.
 \paragraph{Evolutionary Operators}\label{gaOperators}
 The GAModel use a combination of operators made available by the Distributed Evolutionary Algorithms in Python (DEAP)~\cite{DeRainville}. We used the One Point Crossover for the crossover operator, the Polynomial Bounded Mutation for the mutation operator and for selection, we used Tournament selection and Elitism. The parameters are described in the Table~\ref{GAParameters5.1}.
 
-\begin{table}[!ht]
+\begin{table}[H]
   \caption{Parameters used in GAModel and Emp-GAModel}
   \label{GAParameters5.1}
   \begin{center}
@@ -439,7 +439,7 @@ The goal of this research is to find existing patterns in the occurrence of eart
 
 During the preprocessing phase, we discovered a higher number of occurrences of earthquakes during the year of 2011, when a 9.0 $M_w$ earthquake happened, see Section~\ref{chapter1}. This earthquake triggered too many after called aftershocks in all Japan. It is considered that big earthquakes may cause others earthquakes~\cite{zhuang2004analyzing}. In~Figure \ref{ocorrenciasAno} it is possible to visualise a great number of earthquakes for the year of 2011. Because of this abnormal behaviour and because we decided to focus on more stable occurrences, we limited the training base to earthquakes until 2010.
 
-\begin{figure}[!htb]
+\begin{figure}[]
 \centering
 \includegraphics[scale=0.5]{img/ocorrenciasAno.png}
 \caption{Amount of earthquake by year.}
@@ -455,7 +455,7 @@ We also selected some sub-areas in Japan to better extract and understand earthq
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.4]{alljapan.png}
+	\includegraphics[scale=0.25]{img/alljapan.png}
 	\caption{Japan and the areas used in this studied.}
 	\label{alljapan}
 \end{figure}
@@ -478,9 +478,9 @@ The patterns of earthquakes are dependent of the epicentre. We wanted to explore
 
 In Figure~\ref{histogramQuakes}, it is possible to understand that most of the earthquakes happened with depths smaller or equal to 100 km. The earthquakes deeper than 100 km are fewer and more distant, as it is in the same Figure.\\
 
-\begin{figure}[!htb]
+\begin{figure}[]
 	\centering
-	\includegraphics[scale=0.25, left]{detphsNew.png}
+	\includegraphics[scale=0.15, left]{img/detphsNew.png}
 	\caption{Depth Histogram of earthquakes.}
 	\label{histogramQuakes}
 \end{figure}
@@ -493,9 +493,9 @@ In the Section~\ref{1year-model}, we explained that we have two kinds of models,
 
 The question is how should it be done. The simplest way, is to select earthquakes with magnitude above 3.0 in the Richter Scale and then to consider those as the mainshocks. The distribution of earthquakes after this selection is exemplified in the Figure~\ref{quakesKanto}.
 
-\begin{figure}[!htb]
+\begin{figure}[H]
 	\centering
-	\includegraphics[scale=0.5]{Magnitude2003Kanto.png}
+	\includegraphics[scale=0.35]{img/Magnitude2003Kanto.png}
 	\caption{Histogram of earthquakes stronger than 3.0 in the Richter Scale in Kanto}
 	\label{quakesKanto}
 \end{figure}
@@ -522,11 +522,11 @@ For this new experiment, we used even more scenarios (space/time regions) than t
 
 These methods are stochastic methods and hence are variations of the GAModel, we decided to maintain the number of repetitions without redoing the Power of the Student t-test.
 
-\subsubsection{Statistical Analysis of the Results}\label{anova}
+\subsection{Statistical Analysis of the Results}\label{anova}
 
 The goal is to discover if there is any variation between the methods and which are the most influential variables. For achieve that, we will use the ANOVA test.
 
-In the ANOVA test, of variance of one specific variable with  95\% confidence level, with P < 0.05 it means that there exists a statistical significant evidence that the variables variance are different from.
+In the ANOVA test, of variance of one specific variable with 95\% confidence level, with ``p-value'' < 0.05 it means that there exists a statistical significant evidence that the variables variance are different from.
 
 There are some tests hypothesis for this experiment that we want to analyse. They all can be generalised as follows:
 
@@ -534,8 +534,7 @@ $$\begin{cases} H_0: \text{The population means are equal.} &\\
 H_1: \text{The population means are different.}&\\
 \end{cases}$$\\
 
-Then, if there is no statistical significant difference between the means, we apply the Tukey HSD. We apply it on the results obtained from the ANOVA test to specify which groups differ. 
-Tukey's methodology analysis shows the means of a case with the means of every other case. Doing so, it identifies differences between means :
+Then, if there is no statistical significant difference between the means, we apply the Tukey HSD. We apply it on the results obtained from the ANOVA test to specify which groups differ. Tukey's methodology analysis shows the means of a case with the means of every other case. Doing so, it identifies differences between means :
 
 $$\begin{cases}
 \mu_a-\mu_b, \text{where $\mu_a$ is the mean of the first group}\\
@@ -547,10 +546,233 @@ In the case where statistical significant difference exists, we explore this by 
 That is:
 
 $$\begin{cases}
-H_0: \mu = 0, \text{the difference between measured observations is 0.}&\\
-H_1: \mu != 0, \text{difference between measured observations is not 0.}
+H_0: \mu = 0, \text{the difference between observations is 0.}&\\
+H_1: \mu != 0, \text{difference between observations is not 0.}
 \end{cases}$$\\
 
+%%% trabalho 19.07 começa aqui
+\subsubsection{Results from The Mainshock Models Mainshock with Aftershock Models Experiment}\label{resultsBigExp}
+
+An one-way between subjects ANOVA was conducted to compare the effects of the models, the years and regions on the log-likelihood value. In this study there are the models: \textit{ReducedGAModel}, \textit{Emp-ReducedGAModelSLC}, \textit{Emp-GAModel}, \textit{Emp-ReducedGAModel}, \textit{GAModelWindow}, \textit{ReducedGAModelWindow}, \textit{GAModelSLC}, \textit{ReducedGAModelSLC}, \textit{Emp-GAModelWindow}, \textit{Emp-ReducedGAModelWindow}, \textit{GAModel} and \textit{Emp-GAModelSLC}.
+
+Based on the results of this first test, it is evident that all variables are significantly different. The results of the experiments are in the Table~\ref{anovatest1}. For all,the confidence level is set to 95\% .
+
+%TODO: pegar monografia e ver o que eu tinha pensado
+\begin{table*}[!htb]
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|}
+		\hline
+		{Variable} & {Degrees of Freedom} & {Sum Sq}    & {Mean Sq}   & {F Value} & {Pr(\textgreater F)} \\
+		\hline
+		Model    & 15           	  & 149303768  & 9953585   & 63.72    & \textless2e-16     \\
+		\hline
+		Year     & 5                  & 414016420  & 82803284  & 530.06   & \textless2e-16     \\
+		\hline
+		Region   & 3                  & 869821655  & 289940552  & 1856.02   & \textless2e-16	\\    
+		\hline
+	\end{tabular}
+	\caption{ANOVA Test Results Values - Mainshock Models Mainshock and Aftershock Models.}
+	\label{anovatest1}
+\end{table*}
+
+Because we found statistically significant result, we applied a Post-hoc comparisons using the Tukey HSD analysis methodology. It compared each condition with all others. For example, it compares the values from the GAModel with the GAModelWindow. It indicated that the models Emp-ReducedGAModelWindow, GAModelWindow, ReducedGAModelWindow, GAModelSLC, ReducedGAModelSLC achieve statistically better or equal results in terms of log-likelihood when compared with the other models and when compared with themselves, they are statistically similar. The results of the experiments are in the Table~\ref{anovatest2}. For all, again,the confidence level is set to 95\% .
+     
+\begin{table*}[!htb]
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|}
+		\hline
+		{Variable} & {Degrees of Freedom} & {Sum Sq}    & {Mean Sq}   & {F Value} & {Pr(\textgreater F)} \\
+		\hline
+		Model    & 4           	  & 884882  & 221220   & 1.604    & 0.171    \\
+		\hline
+		Year     & 5                 & 150297410  & 30059482  & 217.955   & \textless2e-16     \\
+		\hline
+		Region   & 3                  & 234225270  & 78075090  & 566.107   & \textless2e-16	\\    
+		\hline
+	\end{tabular}
+	\caption{ANOVA Test Results Values - Emp-ReducedGAModelWindow, GAModelWindow, ReducedGAModelWindow, GAModelSLC, ReducedGAModelSLC.}
+	\label{anovatest2}
+\end{table*}
+
+Therefore, to confirm that statistically the models are similar, we applied the conducted the ANOVA test considering only with the models indicated by the Tukey HSD, see Figure~\ref{modelANOVA-100and5}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.28]{img/modelANOVA-100and5.png}
+	\caption{Intervals of Confidence 95\% of differences between the Mainshock Models Mainshock and the Aftershock Models, taken two by two.}
+		\label{modelANOVA-100and5}
+\end{figure}
+
+This time, we found statistically significant difference only for the year and region condition. To show that the models results are not statistically different from each other, we applied a pairing analysis.
+
+From the the pairing analysis, we decided to use the \textit{ReducedGAModelSLC} as the representative method of this study. That is because, in most cases when its values were compared, it showed a little better performance in the means of the log-likelihood values. For the results, see the Table~\ref{Paired}.
+
+In this Table, the column labelled $\mu_a - \mu_b$ shows the result of paired difference between the models referred in the ``Models Compared'' column. The p-value shows the significance value of the paired {\it Student's t-test} for the null hypothesis `` The paired difference of the means of the models is equal''.
+
+
+\begin{table*}[!htb]
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			\multicolumn{1}{|c|}{Region} &
+			\multicolumn{1}{|c|}{Models Compared} & \multicolumn{1}{|c|}{Mean of $\mu_a - \mu_b$}&
+			\multicolumn{1}{|c|}{p-value} \\
+			\hline
+			
+			Kansai & EMP-\textbf{GAModelWindow} - GAModelWindow &
+			 38.67553 &  3.304e-05 \\
+			
+		    & EMP-\textbf{GAModelWindow} - ReducedGAModelWindow & 4.272185  & 0.2607\\
+			
+			& EMP-\textbf{GAModelWindow} - GAModelSLC & 
+			112.0424 &  1.122e-05\\
+
+			&EMP-GAModelWindow - \textbf{ReducedGAModelSLC} &  
+			-1.787262 & 0.5673 \\
+			
+			& GAModelWindow - \textbf{ReducedGAModelWindow} &
+			-34.40335 & 0.000963\\
+			
+			& \textbf{GAModelWindow} - GAModelSLC &
+			 73.36687  &9.065e-06\\
+				
+			& GAModelWindow - \textbf{ReducedGAModelSLC} &
+			-40.46279 & 6.32e-05\\
+				
+			& \textbf{ReducedGAModelWindow} - GAModelSLC &
+			107.7702  & 2.632e-05\\
+
+			& ReducedGAModelWindow - \textbf{ReducedGAModelSLC} &
+			-6.059447 &0.2982\\
+
+			& GAModelSLC - \textbf{ReducedGAModelSLC} &
+			-113.8297 & 1.2e-05\\
+
+			\hline
+			Touhoku & EMP-\textbf{GAModelWindow} - GAModelWindow &
+			3.34556 & 0.546\\
+			& EMP-\textbf{GAModelWindow} - ReducedGAModelWindow &
+			81.60965 & 5.225e-07\\
+			&	EMP-\textbf{GAModelWindow} - GAModelSLC &
+			63.02216 &0.01971\\
+			& EMP-GAModelWindow - \textbf{ReducedGAModelSLC} &
+			-62.70586 & 0.007075\\
+			& \textbf{GAModelWindow} - ReducedGAModelWindow & 
+			78.26409 & 2.938e-05\\
+			& \textbf{GAModelWindow} - GAModelSLC &
+			59.6766 & 0.04829\\
+			& GAModelWindow - \textbf{ReducedGAModelSLC} &
+			-66.05142 &0.001231\\
+			& ReducedGAModelWindow - \textbf{GAModelSLC} &
+			-18.58749 & 0.3443\\
+			& ReducedGAModelWindow - \textbf{ReducedGAModelSLC} &
+			-144.3155 & 0.000214\\
+			& GAModelSLC - \textbf{ReducedGAModelSLC} &
+			-125.728 &0.01216\\
+
+			
+			\hline
+			East Japan & \textbf{EMP-GAModelWindow} - GAModelWindow &
+			1.872764  & 0.9539\\
+
+			& EMP-\textbf{GAModelWindow} - ReducedGAModelWindow &
+			194.4944 & 1.834e-06\\
+			& EMP-\textbf{GAModelWindow} - GAModelSLC &
+			189.1155 & 0.0003456\\
+			& EMP-GAModelWindow - \textbf{ReducedGAModelSLC} &
+			-274.9858 & 4.961e-05\\
+			& \textbf{GAModelWindow} - ReducedGAModelWindow &
+			192.6217 & 0.003738\\
+			& \textbf{GAModelWindow} - GAModelSLC &
+			187.2428 &9.495e-06\\
+			& GAModelWindow - \textbf{ReducedGAModelSLC} &
+			-276.8586 & 4.636e-05\\
+			& ReducedGAModelWindow - \textbf{GAModelSLC} & 
+			-5.378912 & 0.8576\\
+			& ReducedGAModelWindow - \textbf{ReducedGAModelSLC} &
+			-469.4803 & 1.446e-05\\
+			& GAModelSLC - \textbf{ReducedGAModelSLC} &
+			-464.1014  & 2.38e-06\\
+
+			
+			\hline
+			Kanto & EMP-\textbf{GAModelWindow} - GAModelWindow &
+			57.95612 & p-value = 0.00138\\
+			& EMP-\textbf{GAModelWindow} - ReducedGAModelWindow &
+			79.60781 & 3.441e-05\\
+			& EMP-\textbf{GAModelWindow} - GAModelSLC &
+			274.3114  & 5.717e-06\\
+			& EMP-GAModelWindow - \textbf{ReducedGAModelSLC} & 
+			-96.61803  & 6.22e-07\\
+			& \textbf{GAModelWindow} - ReducedGAModelWindow & 
+			21.65169  & 0.1105\\
+			&\textbf{GAModelWindow} - GAModelSLC &
+			216.3553  & 2.302e-07\\
+			& GAModelWindow - \textbf{ReducedGAModelSLC} &
+			-154.5741  & 1.741e-05\\
+			& \textbf{ReducedGAModelWindow} - GAModelSLC &
+			194.7036  & 3.678e-05\\
+			& ReducedGAModelWindow -\textbf{ReducedGAModelSLC} &
+			-176.2258 & 4.337e-06\\
+			& GAModelSLC - \textbf{ReducedGAModelSLC} &
+			-370.9294 &1.942e-06\\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Paired Experiment Result.}
+	\label{Paired}
+\end{table*}
+
+
+
+%TODO: add only the real and the best model figures
+\subsection{The Models Examples And The Real Data}
+
+The Figure~\ref{gamodel2005eastjapan} shows a model from the GAModel method for the year 2005 in East Japan. The next Figure,~\ref{reduced2005eastjapan} shows a model from the ReducedGAModel~\ref{reducedGAModel} method for the year 2005 in East Japan.
+
+All Figures,~\ref{gamodel2005eastjapan}~\ref{reduced2005eastjapan}~\ref{hybridgamodel2005eastjapan}~\ref{hybridreduced2005eastjapan},  indicate a low earthquake intensity as white while the more intensity areas, are shown in red. They are, in order, the data visualisation for the model from: the GAModel, the ReducedGAModel, the Emp-GAModel and the Emp-ReducedGAModel for East Japan in 2005. The Figure~\ref{real2005eastjapan} represents the earthquake occurrences in the same region and year.
+
+
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[scale=0.2]{img/gamodel2005eastjapan.png}
+%	\label{gamodel2005eastjapan}
+%\end{figure}
+%
+%
+%\begin{figure}[H]
+%	\centering
+%	\begin{minipage}{0.45\textwidth}
+%		\centering
+%		\includegraphics[scale=0.2]{img/reduced2005eastjapan.png}
+%		\label{reduced2005eastjapan}
+%	\end{minipage}
+%	\begin{minipage}{0.45\textwidth}
+%		\centering
+%		\includegraphics[scale=0.2]{img/hybridgamodel2005eastjapan.png}
+%		\label{hybridgamodel2005eastjapan}
+%	\end{minipage}
+%	\caption{The Figure on the left is the ReducedGAModel model for the year of 2005, East Japan, and the one on the right Emp-GAModel model for the year of 2005, East Japan.}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\begin{minipage}{0.45\textwidth}
+%		\centering
+%		\includegraphics[scale=0.2]{img/real2005eastjapan.png}
+%		\caption{Earthquake occurrences in the year of 2005 in East Japan.}
+%		\label{real2005eastjapan}
+%	\end{minipage}
+%	\begin{minipage}{0.45\textwidth}
+%		\centering
+%		\includegraphics[scale=0.2]{img/hybridreduced2005eastjapan.png}
+%		\label{hybridreduced2005eastjapan}
+%	\end{minipage}
+%	\caption{The Figure on the left is the Emp-ReducedGAModel model for the year of 2005, East Japan, and the one on the right GAModel model for the year of 2005, East Japan, East Japan.}
+%\end{figure}
+
+
+
+%%% trabalho 19.07 termina aqui
 \subsection{Magnitude Experiment}\label{magExp}
 
 In this experiment, we focused on studying how the magnitude of an earthquake affects the model quality, because the patterns of the earthquakes are depended of its magnitude. We wanted to explore the relation between the magnitude of the earthquakes and how would the models behave on those situations.
