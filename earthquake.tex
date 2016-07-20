@@ -772,14 +772,46 @@ All Figures,~\ref{gamodel2005eastjapan}~\ref{reduced2005eastjapan}~\ref{hybridga
 
 
 
-%%% trabalho 19.07 termina aqui
+
 \subsection{Magnitude Experiment}\label{magExp}
 
 In this experiment, we focused on studying how the magnitude of an earthquake affects the model quality, because the patterns of the earthquakes are depended of its magnitude. We wanted to explore the relation between the magnitude of the earthquakes and how would the models behave on those situations.
 
 For that, we created magnitude intervals, where each interval is named as a slice. A slice is an closed interval of 1.0 degree  starting from 3.0 degrees of magnitude, see Section~\ref{catalogs}, and ending in 10.0 degrees. For example, $[3.0-4.0]$ or $[7.0-8.0]$ are two different slices. For each model, we selected only the earthquakes that belong to a slice. Then, we calculate the log-likelihood value.
+\subsubsection{Magnitude Study}
+From the results already obtain and showed in the section~\ref{resultsBigExp}, when selected the models with earthquakes with depth smaller or equal to 25 km and then we split the models in magnitude intervals, as defined in~\ref{magExp}.
 
+After that, we compared those split models against themselves. Based on the results of this test, it is evident that all variables are still significantly different. The results of the experiments are in the Table~\ref{anovatestMag}. For all, as before, we choose the confidence level to be 95\%.
 
+\begin{table*}[!ht]
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|}
+		\hline
+		{Variable} & {Degrees of Freedom} & {Sum Sq}    & {Mean Sq}   & {F Value} & {Pr(\textgreater F)} \\
+		\hline
+		Model       & 5            	  & 2.368e+09      & 4.737e+08    & 3058     & \textless2e-16     \\
+		\hline
+		Year        & 3                  & 4.139e+09   & 1.380e+09    & 8906     & \textless2e-16     \\
+		\hline
+		Magnitude   & 7                  & 3.212e+09   & 4.588e+08    & 2962     & \textless2e-16	\\    
+		\hline
+	\end{tabular}
+	\caption{ANOVA Test Results Values - Magnitude Study.}
+	\label{anovatestMag}
+\end{table*}
+
+We found statistically significant result and, as before, we applied the Tukey HSD test. The results are shown in Figure~\ref{modelANOVAMag} and the \textit{NULL} field was used as the model with all magnitude intervals (the complete model).
+
+It indicated that the interval $[3.0-4.0]$ always performed, in terms of log-likelihood values, worse than all other intervals. this phenomenon also happens in the interval $[4.0-5.0]$, though in this case, the difference is not as big as the last one. The other intervals show no significant difference.
+From the results found, we decided to chose only earthquakes with magnitude higher than 4.0 as our threshold value.
+
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=9cm,height=9cm,keepaspectratio]{img/magModels.png}
+%	\caption{ANOVA results - Models from Magnitude Study.}
+%	\label{modelANOVAMag}
+%\end{figure}
+%%% trabalho 19.07 termina aqui
 \subsubsection{Catalogues and Models }
 This experiment used the same catalogues used in the previous experiment~\ref{bigExp}. 
 
