@@ -6,11 +6,13 @@ Where is data about the relative intensity method?
 
 # Images
 
-Add an image to the first page of the paper. Could be the same image as the 
-first image of the ECTA paper.  
+Add an image/table explaining the possible combinations of GA/Reduced and EMP*/NoEmp
+(Introduction or methodology)  
 
 Add an image explaining the differences of the representations between the 
-GAmodel and the ReducedGAModel  
+GAmodel and the ReducedGAModel (methodology section)  
+
+Add an image with the flowchart for the EMP* methods (methodology section)  
 
 
 
