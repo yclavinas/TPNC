@@ -9,3 +9,8 @@
 *.bbl
 
 *~
+.Rhistory
+.DS_Store
+TODO.html
+main.synctex.gz
+

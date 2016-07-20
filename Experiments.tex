@@ -1,0 +1,334 @@
+\section{Experimental Design}
+
+The first experiment was made to compare the all the models proposed with each other and to discover which method would achieve higher log-likelihood values. We created new scenarios, applying the methods for all regions and for the years of 2005-2010. We also used 3 kinds of catalogues: the JMA and the declustered catalogues form the Window method and the SLC method. Then, we compared the means of the models log-likelihood values using the ANOVA test. If a group of variables considered for the ANOVA test showed no statistically significant difference, we applied the Paired Student t-test, in the case all groups showed statistically significant difference, the Tukey HSD methodology analysis was used.
+
+We also made a magnitude experiment. This experiment was done to explore the influence of the magnitude in all models generated. We split them into slices composed of earthquakes that have magnitude in a given magnitude interval. The we calculated the log-likelihood of these slices and applied the ANOVA test to compared these sliced-models.
+
+
+\subsubsection{The Mainshock Models and Mainshock with Aftershock Method Experiments}\label{bigExp}
+ Here we describe the catalogues and the evolutionary operators used for the experiments. Then we specify the models comparison.
+ 
+\paragraph{The catalogues}\label{catalogs}
+
+The data used was from JMA catalogue, with the minimum magnitude of 3.0 and the two declustered catalogues, obtained from the methods explained in the Section~\ref{Clustering}. The models that use these catalogues have in the word Window appended at their names, for the methods that used the Window declustering, or \textit{SLC}, for the methods that used the Single Link Cluster. 
+
+\subsubsection{Models Comparison}
+For this new experiment, we used even more scenarios (space/time regions) than the others. Each scenario contains the earthquakes for the regions of Kanto, Kansai, Touhoku and East Japan for a given year (2005-2010). We wanted to explore if there exists any influence in the performance of the models that are caused by the depth of an earthquake. So, the scenarios are also composed by introducing a three groups depths thresholds. They are: of earthquakes with depth smaller than 25km, or between 0km and 60km or even between 0km and 100km.
+
+These methods are stochastic methods and hence are variations of the GAModel, we decided to maintain the number of repetitions without redoing the Power of the Student t-test.
+
+\subsection{Statistical Analysis of the Results}\label{anova}
+
+The goal is to discover if there is any variation between the methods and which are the most influential variables. For achieve that, we will use the ANOVA test.
+
+In the ANOVA test, of variance of one specific variable with 95\% confidence level, with ``p-value'' < 0.05 it means that there exists a statistical significant evidence that the variables variance are different from.
+
+There are some tests hypothesis for this experiment that we want to analyse. They all can be generalised as follows:
+
+$$\begin{cases} H_0: \text{The population means are equal.} &\\
+H_1: \text{The population means are different.}&\\
+\end{cases}$$\\
+
+Then, if there is no statistical significant difference between the means, we apply the Tukey HSD. We apply it on the results obtained from the ANOVA test to specify which groups differ. Tukey's methodology analysis shows the means of a case with the means of every other case. Doing so, it identifies differences between means :
+
+$$\begin{cases}
+\mu_a-\mu_b, \text{where $\mu_a$ is the mean of the first group}\\
+                \text{$\mu_b$ is the mean of the second group.}
+\end{cases}$$
+
+In the case where statistical significant difference exists, we
+explore this by pairing the measures observations of two
+groups.
+
+%~\cite{Campelo2015-01}. -- Nao precisa citar a aula de estatistica
+% Em geral, se voce vai citar algo de nivel ``livro texto'', voce tem que ir atras
+% da referencia original, e nao citar onde voce viu a referencia sendo usada.
+
+That is:
+
+$$\begin{cases}
+H_0: \mu = 0, \text{the difference between observations is 0.}&\\
+H_1: \mu != 0, \text{difference between observations is not 0.}
+\end{cases}$$\\
+
+%%% trabalho 19.07 começa aqui
+\subsubsection{Results from The Mainshock Models Mainshock with Aftershock Models Experiment}\label{resultsBigExp}
+
+An one-way between subjects ANOVA was conducted to compare the effects of the models, the years and regions on the log-likelihood value. In this study there are the models: \textit{ReducedGAModel}, \textit{Emp-ReducedGAModelSLC}, \textit{Emp-GAModel}, \textit{Emp-ReducedGAModel}, \textit{GAModelWindow}, \textit{ReducedGAModelWindow}, \textit{GAModelSLC}, \textit{ReducedGAModelSLC}, \textit{Emp-GAModelWindow}, \textit{Emp-ReducedGAModelWindow}, \textit{GAModel} and \textit{Emp-GAModelSLC}.
+
+Based on the results of this first test, it is evident that all variables are significantly different. The results of the experiments are in the Table~\ref{anovatest1}. For all,the confidence level is set to 95\% .
+
+%TODO: pegar monografia e ver o que eu tinha pensado
+\begin{table*}[!htb]
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|}
+		\hline
+		{Variable} & {Degrees of Freedom} & {Sum Sq}    & {Mean Sq}   & {F Value} & {Pr(\textgreater F)} \\
+		\hline
+		Model    & 15           	  & 149303768  & 9953585   & 63.72    & \textless2e-16     \\
+		\hline
+		Year     & 5                  & 414016420  & 82803284  & 530.06   & \textless2e-16     \\
+		\hline
+		Region   & 3                  & 869821655  & 289940552  & 1856.02   & \textless2e-16	\\    
+		\hline
+	\end{tabular}
+	\caption{ANOVA Test Results Values - Mainshock Models Mainshock and Aftershock Models.}
+	\label{anovatest1}
+\end{table*}
+
+Because we found statistically significant result, we applied a Post-hoc comparisons using the Tukey HSD analysis methodology. It compared each condition with all others. For example, it compares the values from the GAModel with the GAModelWindow. It indicated that the models Emp-ReducedGAModelWindow, GAModelWindow, ReducedGAModelWindow, GAModelSLC, ReducedGAModelSLC achieve statistically better or equal results in terms of log-likelihood when compared with the other models and when compared with themselves, they are statistically similar. The results of the experiments are in the Table~\ref{anovatest2}. For all, again,the confidence level is set to 95\% .
+     
+\begin{table*}[!htb]
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|}
+		\hline
+		{Variable} & {Degrees of Freedom} & {Sum Sq}    & {Mean Sq}   & {F Value} & {Pr(\textgreater F)} \\
+		\hline
+		Model    & 4           	  & 884882  & 221220   & 1.604    & 0.171    \\
+		\hline
+		Year     & 5                 & 150297410  & 30059482  & 217.955   & \textless2e-16     \\
+		\hline
+		Region   & 3                  & 234225270  & 78075090  & 566.107   & \textless2e-16	\\    
+		\hline
+	\end{tabular}
+	\caption{ANOVA Test Results Values - Emp-ReducedGAModelWindow, GAModelWindow, ReducedGAModelWindow, GAModelSLC, ReducedGAModelSLC.}
+	\label{anovatest2}
+\end{table*}
+
+Therefore, to confirm that statistically the models are similar, we applied the conducted the ANOVA test considering only with the models indicated by the Tukey HSD, see Figure~\ref{modelANOVA-100and5}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.28]{img/modelANOVA-100and5.png}
+	\caption{Intervals of Confidence 95\% of differences between the Mainshock Models Mainshock and the Aftershock Models, taken two by two.}
+		\label{modelANOVA-100and5}
+\end{figure}
+
+This time, we found statistically significant difference only for the year and region condition. To show that the models results are not statistically different from each other, we applied a pairing analysis.
+
+From the the pairing analysis, we decided to use the \textit{ReducedGAModelSLC} as the representative method of this study. That is because, in most cases when its values were compared, it showed a little better performance in the means of the log-likelihood values. For the results, see the Table~\ref{Paired}.
+
+In this Table, the column labelled $\mu_a - \mu_b$ shows the result of paired difference between the models referred in the ``Models Compared'' column. The p-value shows the significance value of the paired {\it Student's t-test} for the null hypothesis `` The paired difference of the means of the models is equal''.
+
+
+\begin{table*}[!htb]
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			\multicolumn{1}{|c|}{Region} &
+			\multicolumn{1}{|c|}{Models Compared} & \multicolumn{1}{|c|}{Mean of $\mu_a - \mu_b$}&
+			\multicolumn{1}{|c|}{p-value} \\
+			\hline
+			
+			Kansai & EMP-\textbf{GAModelWindow} - GAModelWindow &
+			 38.67553 &  3.304e-05 \\
+			
+		    & EMP-\textbf{GAModelWindow} - ReducedGAModelWindow & 4.272185  & 0.2607\\
+			
+			& EMP-\textbf{GAModelWindow} - GAModelSLC & 
+			112.0424 &  1.122e-05\\
+
+			&EMP-GAModelWindow - \textbf{ReducedGAModelSLC} &  
+			-1.787262 & 0.5673 \\
+			
+			& GAModelWindow - \textbf{ReducedGAModelWindow} &
+			-34.40335 & 0.000963\\
+			
+			& \textbf{GAModelWindow} - GAModelSLC &
+			 73.36687  &9.065e-06\\
+				
+			& GAModelWindow - \textbf{ReducedGAModelSLC} &
+			-40.46279 & 6.32e-05\\
+				
+			& \textbf{ReducedGAModelWindow} - GAModelSLC &
+			107.7702  & 2.632e-05\\
+
+			& ReducedGAModelWindow - \textbf{ReducedGAModelSLC} &
+			-6.059447 &0.2982\\
+
+			& GAModelSLC - \textbf{ReducedGAModelSLC} &
+			-113.8297 & 1.2e-05\\
+
+			\hline
+			Touhoku & EMP-\textbf{GAModelWindow} - GAModelWindow &
+			3.34556 & 0.546\\
+			& EMP-\textbf{GAModelWindow} - ReducedGAModelWindow &
+			81.60965 & 5.225e-07\\
+			&	EMP-\textbf{GAModelWindow} - GAModelSLC &
+			63.02216 &0.01971\\
+			& EMP-GAModelWindow - \textbf{ReducedGAModelSLC} &
+			-62.70586 & 0.007075\\
+			& \textbf{GAModelWindow} - ReducedGAModelWindow & 
+			78.26409 & 2.938e-05\\
+			& \textbf{GAModelWindow} - GAModelSLC &
+			59.6766 & 0.04829\\
+			& GAModelWindow - \textbf{ReducedGAModelSLC} &
+			-66.05142 &0.001231\\
+			& ReducedGAModelWindow - \textbf{GAModelSLC} &
+			-18.58749 & 0.3443\\
+			& ReducedGAModelWindow - \textbf{ReducedGAModelSLC} &
+			-144.3155 & 0.000214\\
+			& GAModelSLC - \textbf{ReducedGAModelSLC} &
+			-125.728 &0.01216\\
+
+			
+			\hline
+			East Japan & \textbf{EMP-GAModelWindow} - GAModelWindow &
+			1.872764  & 0.9539\\
+
+			& EMP-\textbf{GAModelWindow} - ReducedGAModelWindow &
+			194.4944 & 1.834e-06\\
+			& EMP-\textbf{GAModelWindow} - GAModelSLC &
+			189.1155 & 0.0003456\\
+			& EMP-GAModelWindow - \textbf{ReducedGAModelSLC} &
+			-274.9858 & 4.961e-05\\
+			& \textbf{GAModelWindow} - ReducedGAModelWindow &
+			192.6217 & 0.003738\\
+			& \textbf{GAModelWindow} - GAModelSLC &
+			187.2428 &9.495e-06\\
+			& GAModelWindow - \textbf{ReducedGAModelSLC} &
+			-276.8586 & 4.636e-05\\
+			& ReducedGAModelWindow - \textbf{GAModelSLC} & 
+			-5.378912 & 0.8576\\
+			& ReducedGAModelWindow - \textbf{ReducedGAModelSLC} &
+			-469.4803 & 1.446e-05\\
+			& GAModelSLC - \textbf{ReducedGAModelSLC} &
+			-464.1014  & 2.38e-06\\
+
+			
+			\hline
+			Kanto & EMP-\textbf{GAModelWindow} - GAModelWindow &
+			57.95612 & p-value = 0.00138\\
+			& EMP-\textbf{GAModelWindow} - ReducedGAModelWindow &
+			79.60781 & 3.441e-05\\
+			& EMP-\textbf{GAModelWindow} - GAModelSLC &
+			274.3114  & 5.717e-06\\
+			& EMP-GAModelWindow - \textbf{ReducedGAModelSLC} & 
+			-96.61803  & 6.22e-07\\
+			& \textbf{GAModelWindow} - ReducedGAModelWindow & 
+			21.65169  & 0.1105\\
+			&\textbf{GAModelWindow} - GAModelSLC &
+			216.3553  & 2.302e-07\\
+			& GAModelWindow - \textbf{ReducedGAModelSLC} &
+			-154.5741  & 1.741e-05\\
+			& \textbf{ReducedGAModelWindow} - GAModelSLC &
+			194.7036  & 3.678e-05\\
+			& ReducedGAModelWindow -\textbf{ReducedGAModelSLC} &
+			-176.2258 & 4.337e-06\\
+			& GAModelSLC - \textbf{ReducedGAModelSLC} &
+			-370.9294 &1.942e-06\\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Paired Experiment Result.}
+	\label{Paired}
+\end{table*}
+
+
+
+%TODO: add only the real and the best model figures
+\subsection{The Models Examples And The Real Data}
+
+The Figure~\ref{gamodel2005eastjapan} shows a model from the GAModel method for the year 2005 in East Japan. The next Figure,~\ref{reduced2005eastjapan} shows a model from the ReducedGAModel~\ref{reducedGAModel} method for the year 2005 in East Japan.
+
+All Figures,~\ref{gamodel2005eastjapan}~\ref{reduced2005eastjapan}~\ref{hybridgamodel2005eastjapan}~\ref{hybridreduced2005eastjapan},  indicate a low earthquake intensity as white while the more intensity areas, are shown in red. They are, in order, the data visualisation for the model from: the GAModel, the ReducedGAModel, the Emp-GAModel and the Emp-ReducedGAModel for East Japan in 2005. The Figure~\ref{real2005eastjapan} represents the earthquake occurrences in the same region and year.
+
+
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[scale=0.2]{img/gamodel2005eastjapan.png}
+%	\label{gamodel2005eastjapan}
+%\end{figure}
+%
+%
+%\begin{figure}[H]
+%	\centering
+%	\begin{minipage}{0.45\textwidth}
+%		\centering
+%		\includegraphics[scale=0.2]{img/reduced2005eastjapan.png}
+%		\label{reduced2005eastjapan}
+%	\end{minipage}
+%	\begin{minipage}{0.45\textwidth}
+%		\centering
+%		\includegraphics[scale=0.2]{img/hybridgamodel2005eastjapan.png}
+%		\label{hybridgamodel2005eastjapan}
+%	\end{minipage}
+%	\caption{The Figure on the left is the ReducedGAModel model for the year of 2005, East Japan, and the one on the right Emp-GAModel model for the year of 2005, East Japan.}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\begin{minipage}{0.45\textwidth}
+%		\centering
+%		\includegraphics[scale=0.2]{img/real2005eastjapan.png}
+%		\caption{Earthquake occurrences in the year of 2005 in East Japan.}
+%		\label{real2005eastjapan}
+%	\end{minipage}
+%	\begin{minipage}{0.45\textwidth}
+%		\centering
+%		\includegraphics[scale=0.2]{img/hybridreduced2005eastjapan.png}
+%		\label{hybridreduced2005eastjapan}
+%	\end{minipage}
+%	\caption{The Figure on the left is the Emp-ReducedGAModel model for the year of 2005, East Japan, and the one on the right GAModel model for the year of 2005, East Japan, East Japan.}
+%\end{figure}
+
+
+
+
+\subsection{Magnitude Experiment}\label{magExp}
+
+In this experiment, we focused on studying how the magnitude of an earthquake affects the model quality, because the patterns of the earthquakes are depended of its magnitude. We wanted to explore the relation between the magnitude of the earthquakes and how would the models behave on those situations.
+
+For that, we created magnitude intervals, where each interval is named as a slice. A slice is an closed interval of 1.0 degree  starting from 3.0 degrees of magnitude, see Section~\ref{catalogs}, and ending in 10.0 degrees. For example, $[3.0-4.0]$ or $[7.0-8.0]$ are two different slices. For each model, we selected only the earthquakes that belong to a slice. Then, we calculate the log-likelihood value.
+\subsubsection{Magnitude Study}
+From the results already obtain and showed in the section~\ref{resultsBigExp}, when selected the models with earthquakes with depth smaller or equal to 25 km and then we split the models in magnitude intervals, as defined in~\ref{magExp}.
+
+After that, we compared those split models against themselves. Based on the results of this test, it is evident that all variables are still significantly different. The results of the experiments are in the Table~\ref{anovatestMag}. For all, as before, we choose the confidence level to be 95\%.
+
+
+\begin{table*}[!ht]
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|}
+		\hline
+		{Variable} & {Degrees of Freedom} & {Sum Sq}    & {Mean Sq}   & {F Value} & {Pr(\textgreater F)} \\
+		\hline
+		Model       & 5            	  & 2.360e+09      & 4.720e+08     & 2828     & \textless2e-16     \\
+		\hline
+		Year        & 3                  & 4.624e+09   & 1.541e+09    & 9234     & \textless2e-16     \\
+		\hline
+		Magnitude   & 7                  & 3.726e+09   & 5.322e+08    & 3189     & \textless2e-16	\\    
+		\hline
+	\end{tabular}
+	\caption{ANOVA Test Results Values - Magnitude Study.}
+	\label{anovatestMag}
+\end{table*}
+
+We found statistically significant result and, as before, we applied the Tukey HSD test. The results are shown in Figure~\ref{modelANOVAMag} and the \textit{NULL} field was used as the model with all magnitude intervals (the complete model).
+
+It indicated that the interval $[3.0-4.0]$ always performed, in terms of log-likelihood values, worse than all other intervals. this phenomenon also happens in the interval $[4.0-5.0]$, though in this case, the difference is not as big as the last one. The other intervals show no significant difference.
+From the results found, we decided to chose only earthquakes with magnitude higher than 4.0 as our threshold value.
+
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=9cm,height=9cm,keepaspectratio]{img/magModels.png}
+%	\caption{ANOVA results - Models from Magnitude Study.}
+%	\label{modelANOVAMag}
+%\end{figure}
+%%% trabalho 19.07 termina aqui
+\subsubsection{Catalogues and Models}
+This experiment used the same catalogues used in the previous experiment~\ref{bigExp}. 
+
+The models also are the models from the last experiment. We also created the new models, considering the slices and add them to the comparison. That lead to a comparison with the models from the last experiment and the models sliced.
+
+
+\subsubsection{Statistical Analysis}
+The goal is to discover if the magnitude influences any variation in the methods and how it does.
+
+For this experiment, we followed the same design from the Section~\ref{anova}.
+
+\subsection{Results}\label{Results}
+
+
+
+
+%TODO: add future work with Gabriels
+%TODO: this section should be a revision of all
