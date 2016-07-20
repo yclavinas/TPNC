@@ -30,20 +30,28 @@ of these events.
 %% One of the same area/location with the earthquakes colored by 
 %% cluster. This would reinforce the clustering characteristic of the 
 %% paper.
+%\begin{figure}[]
+%\centering
+%\includegraphics[width=.45\textwidth]{img/earthquakes2011.png}
+%\caption{Seismic Activity in Eastern Japan in 2011. Each blue dot
+%  represents one earthquake}
+%\label{GreatEastJapan}
+%\end{figure}
+
+%this figure I got from Gabriels work. It shows earthquake clusters from 2003 to 2011. It doesnt look too good for me. Maybe we can take a look at Gabriels code and adapt it
 \begin{figure}[]
-\centering
-\includegraphics[width=.45\textwidth]{img/earthquakes2011.png}
-\caption{Seismic Activity in Eastern Japan in 2011. Each blue dot
-  represents one earthquake}
-\label{GreatEastJapan}
+	\centering
+	\includegraphics[width=.55\textwidth]{img/slc_leste.png}
+	\caption{Seismic Activity in Eastern Japan during the years of 2003 to 2011.}
+	\label{GreatEastJapan}
 \end{figure}
 
 In our previous work~\cite{ecta14}, we proposed a way to generate
 earthquake risk models using a standard Genetic Algorithm (here called
 the GAModel). The GA model was shown to be competitive with the
 Relative Intensity (RI) model, while not using any a-priori
-information about the distribution of earthquake ocurrences. However,
-we have identified a number of issues with the GAModel. Adressing
+information about the distribution of earthquake occurrences. However,
+we have identified a number of issues with the GAModel. Addressing
 these issues will be the focus of this paper.
 
 The first issue was that the GAModel used a genome representation for
@@ -136,39 +144,37 @@ show the results and conclude this work in~\ref{Results} and
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %TODO: change text to mine version
 %TODO: update info + ECTA
-\section{Evolutionary Computation for Earthquake Risk Analysis}\label{estadoArte}
+\section{Bibliography and GAModel review}\label{estadoArte}
 In this section we will briefly discuss some reports of the
 application of Evolutionary Computation and related method for
 Earthquake Risk Analysis.
 
-The usage of Evolutionary Computation in the field of earthquake risk
-models is somewhat sporadic. Zhang and Wang~\cite{Zhang2012} used
-Genetic Algorithms to fine tune an Artificial Neural Network (ANN) and
-use this system to produce a forecast model. Zhou and
-Zu~\cite{Feiyan2014} also proposed a combination of ANN and EC, but
+The usage of Evolutionary Computation in the field of earthquake risk models is somewhat sporadic. Zhang and Wang~\cite{Zhang2012} used Genetic Algorithms to fine tune an Artificial Neural Network (ANN) and use this system to produce a forecast model. Zhou and Zu~\cite{Feiyan2014} also proposed a combination of ANN and EC, but
 their system only forecasts the magnitude parameter of
 earthquakes. Sadat, in the paper~\cite{sadat2015application}, follows
 the idea of Zhou and Zu, aiming to predict the magnitude of the
 earthquakes in North Iran, but in this case, they used ANN and GA.
 
 %Fault Model parameters
-Nicknam et al.~\cite{Nicknam2010} simulated some components from a seismogram station and predicted seismograms for other stations. They combined the Empirical Green’s Function (EGF) with GA. The EGF method is used to synthesise acceleration time histories and the GA approach is developed to optimise the seismological model. They found that this method obtained good agreement with the observed data, but are not sure that results are free from uncertainties.% Nicknam et al worked with more than 30 seismological model parameters. Although, that amount of parameters is not available to us, we can use the information from this paper to exam two options. The first, one may investigate if more earthquake parameters will improve our method and the other one is to analyse how they dealt with so many variables. Then we may consider to do the same and observe the results.
+Nicknam et al.~\cite{Nicknam2010} simulated some components from a seismogram station and predicted seismograms for other stations. They combined the Empirical Green’s Function (EGF) with GA. %The EGF method is used to synthesise acceleration time histories and the GA approach is developed to optimise the seismological model. They found that this method obtained good agreement with the observed data, but are not sure that results are free from uncertainties.% Nicknam et al worked with more than 30 seismological model parameters. Although, that amount of parameters is not available to us, we can use the information from this paper to exam two options. The first, one may investigate if more earthquake parameters will improve our method and the other one is to analyse how they dealt with so many variables. Then we may consider to do the same and observe the results.
 
-Kennett and Sambridge~\cite{Kennett1992} used GA and associated teleseisms procedures to determine the Fault Model parameters of an earthquake. By doing so, they demonstrated that non-linear inversion can be achieved for teleseismic problems without any calculation of waves travel times. %They used only P-wave data and expect that if more data could be introduced, the method would accomplish better results.
+Kennett and Sambridge~\cite{Kennett1992} used GA and associated teleseisms procedures to determine the Fault Model parameters of an earthquake. %By doing so, they demonstrated that non-linear inversion can be achieved for teleseismic problems without any calculation of waves travel times. %They used only P-wave data and expect that if more data could be introduced, the method would accomplish better results.
 
 %PGA
-Some seismological models were developed aiming to estimate parameter values by using Evolutionary Computation. For example, Evolutionary Computation was used to estimate the Peak Ground Acceleration (PGA) of seismically active areas~\cite{Kermani2009,Cabalar2009,Kerh2010,Kerh2015}. 
-The works done by Kerh et al.~\cite{Kerh2010, Kerh2015} are basely a combination of ANN and GA to estimate or predict PGA in Taiwan. These work are based on the benefits of mixing both techniques. They state that the usage of a purely ANN method to estimate PGA may fall into a local minimum and that can be avoid by combining ANN with GA, hence GA is a good method to find global optimums.
+Some seismological models were developed aiming to estimate parameter values by using Evolutionary Computation. For example, EC was used to estimate the Peak Ground Acceleration (PGA) of seismically active areas~\cite{Kermani2009,Cabalar2009,Kerh2010,Kerh2015}. 
+The works done by Kerh et al.~\cite{Kerh2010, Kerh2015} are basely a combination of ANN and GA to estimate or predict PGA in Taiwan. %These work are based on the benefits of mixing both techniques. They state that the usage of a purely ANN method to estimate PGA may fall into a local minimum and that can be avoid by combining ANN with GA, hence GA is a good method to find global optimums.
 
 %Their goal was to decide which areas may be considered potentially hazardous areas and they focused on urban areas. These works are important to revalidate building regulations, urban development and such. The earthquake variables that were used in these work are: local magnitude, focal depth, and epicentre distance. Both magnitude and depth are already used in our work, which is not the case of the epicentre distance variable. They also state that PGA is inversely proportional to epicentre distance, so to add data about this variable may be useful to our work, once it could provide useful information to predict risk models both direct or indirectly.
  
 Ramos and Vázques~\cite{Ramos2011} used Genetic Algorithms to decide the location of sensing stations. In this work they achieved, in general, better results with the GA method when compared with the Seismic Alert System (SAS) method and a greedy algorithm method. %In some cases, the SAS has a better response time than the GA. They consider it to be once caused because the SAS only alerts when earthquakes with magnitude bigger than 5.0, while the GA deals with all the earthquakes.
 
-Ramos et al. work is a important work because it helps the population to avoid bigger disasters caused by earthquakes by increasing the time response of the Seismic-Sense Stations. It has some similar feature as the one present in this document: it uses GA to prevent earthquake disasters and tries to locate targets in a given area (though the targets of this work is sensing stations and ours works target is the earthquakes location) and it proposes a methodology to do a GA parameter setting to find which combination of values for the GA parameters achieve higher results. It is interesting to state that once a solution places a station in an area that is not possible to have sensors, this possible solution suffers some penalties.
+%Ramos et al. work is a important work because it helps the population to avoid bigger disasters caused by earthquakes by increasing the time response of the Seismic-Sense Stations. It has some similar feature as the one present in this document: it uses GA to prevent earthquake disasters and tries to locate targets in a given area (though the targets of this work is sensing stations and ours works target is the earthquakes location) and it proposes a methodology to do a GA parameter setting to find which combination of values for the GA parameters achieve higher results. It is interesting to state that once a solution places a station in an area that is not possible to have sensors, this possible solution suffers some penalties.
 
-Saeidian et al.~\cite{saeidian2016evaluation} also based on the same idea of locating sensing stations. Their work differs from the work of Ramos et al. because it makes a comparison in performance between the GA and Bees Algorithm (BA) to decide which of those techniques would perform better when choosing the location of sensing stations. He found out that the GA was faster than the BA.
+Saeidian et al.~\cite{saeidian2016evaluation} also based on the same idea of locating sensing stations. They do a comparison in performance between the GA and Bees Algorithm (BA) to decide which of those techniques would perform better when choosing the location of sensing stations. He found out that the GA was faster than the BA.
 
-Huda and Santosa \cite{ijse5762} published a paper in which the goal is to find, via Genetic Algorithm, the speed of the waves P and S in the mantle and in the earth crust. P waves are indicated as the first fault found in seismological data and S waves are the changes caused in the phase of a P wave~\cite{ijse5762}. This research aims to obtain a structure of the Japanese underground and geographically focuses in the same region as our work, though it uses data from two kinds of waves which are not available to us.
+%Saeidian et al.~\cite{saeidian2016evaluation} also based on the same idea of locating sensing stations. Their work differs from the work of Ramos et al. because it makes a comparison in performance between the GA and Bees Algorithm (BA) to decide which of those techniques would perform better when choosing the location of sensing stations. He found out that the GA was faster than the BA.
+
+Huda and Santosa \cite{ijse5762} published a paper in which the goal is to find, via GA, the speed of the waves P and S in the mantle and in the earth crust. P waves are indicated as the first fault found in seismological data and S waves are the changes caused in the phase of a P wave~\cite{ijse5762}. %This research aims to obtain a structure of the Japanese underground and geographically focuses in the same region as our work, though it uses data from two kinds of waves which are not available to us.
 
 
 %TODO: Last part in somewhat bad
@@ -202,51 +208,10 @@ Huda and Santosa \cite{ijse5762} published a paper in which the goal is to find,
 %performance. In other words, hence it is common to lack domain
 %knowledge, the random population is a good way to start searching for
 %optimum solutions.
-
-%TODO: Why 1-year?
-\section{The Forecast Models Using Genetic Algorithm}\label{Models}
-
-All forecast models proposed in this paper are based in the
-Collaboratory for the Study of Earthquake Predictability (CSEP)
-framework.
-
-Each individual has its own representation of the framework based on
-different perceptions of what are the best aspects of the framework.
-
-Fo all methods, the population is trained on earthquake event data for a training
-period, which is anterior to the target test period. After completing
-the evaluation limit, the best individual is chosen to be the final
-forecast.
-
-\subsection{1-year Forecast Models}
-The CSEP framework, a forecast model uses a gridded rate
-forecast~\cite{zechar2010evaluating}, one common format in the
-literature. In this format, a geographical region is divided in
-sections, bins, during a start date and an end date. The forecast will
-estimate the risk of earthquake occurrence in this target region, during the target time interval. For
-this study we considered the target time interval of one
-year~\cite{ecta14}.
-
-Large and independent earthquakes, also known as mainshocks, are
-followed by a wave of others earthquakes, the
-aftershocks~\cite{schorlemmer2010first}. Hence there is no physical
-measurement to identify mainshocks and its
-aftershocks~\cite{schorlemmer2010first}, we divided the forecast
-models in two groups: the ones that only forecasts mainshocks, using only GA techniques, and those that forecast both mainshocks and aftershocks using both GA techniques and empirical laws, such as the modified Omori law. These laws are use to derive the aftershocks from a synthetic data of mainshocks. 
-
-Both classes forecast earthquakes with magnitude greater than 3.0 for
-every scenario proposed, with a binning of 0.1, here named as cells to
-avoid conflicts with the location bin. That results in magnitude cells
-of [3.0, 3.1), [3.1, 3.2), until [9.9, 10). 
-
-
-\subsection{Mainshock Models}\label{mainshocksMethods}
-There are two mainshock models. The ones generated by the GAModel and the ones generated by the ReducedGAModel.
-
 The GAModel is considered as one method to generate
 space-rate-time forecasts. It also could be described as:
 \begin{equation}\label{gamodel}
- \Lambda(t,x,y,M|\Upsilon_t) = \mu(x,y)
+\Lambda(t,x,y,M|\Upsilon_t) = \mu(x,y)
 \end{equation}
 where you can denote the number of earthquakes forecast in all bins 
 as $\Lambda(t,x,y)$~\cite{zechar2010evaluating} given that $\Upsilon_t$ 
@@ -260,58 +225,58 @@ fraction of the forecast where we expect to find specific risk areas.
 
 
 \subsubsection{GAModel}\label{GAModel}
-The GAModel is completely based on the framework suggested by the CSEP. In it, one forecast is defined as a region in a specific time interval and is divided in bins. Each bin represents a geographical interval. The whole target area of study is covered by a group of these bins where each bin has an earthquake forecast value. This groups of bin represent the $\mu(x,y)$, the background intensity~\cite{zhuang2004analyzing}. In the GAModel, each possible solution is represented as an entire forecast model.
+The GAModel is based on the framework suggested by the CSEP. The CSEP framework, a forecast model uses a gridded rate
+forecast~\cite{zechar2010evaluating}, one common format in the
+literature. The forecast will estimate the risk of earthquake occurrence in this target region, during the target time interval. For this study we considered the target time interval of one year~\cite{ecta14}.
+
+ In the CSEP framework one forecast is defined as a region in a specific time interval and is divided in bins. Each bin represents a geographical interval. The whole target area of study is covered by a group of bins where each bin has an earthquake forecast value. This groups of bin represent the $\mu(x,y)$, the background intensity~\cite{zhuang2004analyzing}. In the GAModel, each possible solution is represented as an entire forecast model.
 
 \paragraph{Genome Representation}\label{genomeGA}
-In the GAModel each individual represents an entire forecast model. Each gene of the individual is a real value, corresponding to one bin in the desired model. The values are sampled from the interval [0, 1). These real values are converted to a integer forecast, we use the same modification of the Poisson deviates extraction algorithm~\ref{inversePoisson} used in~\cite{ecta14}. In the algorithm~\ref{inversePoisson} $x$ is the real value that will be converted and $\mu$ is the mean of the earthquakes observations in the real data.
+In the GAModel each individual represents an entire forecast model. Each gene is a real value, corresponding to one bin in the desired model. The values are sampled from the interval [0, 1). These real values are converted to a integer forecast, we use the same modification of the Poisson deviates extraction algorithm~\ref{inversePoisson} used in~\cite{ecta14}.In it $x$ is the real value that will be converted and $\mu$ is the mean of the earthquakes observations in the real data.
 
 \begin{algorithm}\label{inversePoisson}
-  \caption{Obtain a Poisson deviate from a $[0,1)$ value}
-  \label{InversePoisson}[H]
-  \begin{algorithmic}
-    \STATE $L \gets \exp{(-\mu)}, k \gets 1, prob \gets 1 * x$
-    \REPEAT 
-    \STATE $\text{increment }k$
-    \STATE $prob \gets prob*x$
-    \UNTIL{$prob > L$}
-    \RETURN $k$
-	\WHILE{$prob > L$} 
+	\caption{Obtain a Poisson deviate from a $[0,1)$ value}
+	\label{InversePoisson}[H]
+	\begin{algorithmic}
+		\STATE $L \gets \exp{(-\mu)}, k \gets 1, prob \gets 1 * x$
+		\REPEAT 
+		\STATE $\text{increment }k$
+		\STATE $prob \gets prob*x$
+		\UNTIL{$prob > L$}
+		\RETURN $k$
+		\WHILE{$prob > L$} 
 		\STATE $k \gets k + 1$
-	    \STATE $prob \gets prob*x$
-	\ENDWHILE
-    \RETURN $k$
-  \end{algorithmic}
+		\STATE $prob \gets prob*x$
+		\ENDWHILE
+		\RETURN $k$
+	\end{algorithmic}
 \end{algorithm}
 
-The genome is a real valued array X, where each element corresponds to one bin in the desired model (the number of bins n is defined by the problem). Each element $x_i \in X$ takes a value from $[0,1)$. In the initial population, these values are sampled from a uniform distribution and they are randomly generated. For more details of the genome representation, please refer to~\cite{ecta14}.
+The individual is a real valued array X, where each element corresponds to one bin in the desired model (the number of bins n is defined by the problem). Each element $x_i \in X$ takes a value from $[0,1)$. In the initial population, these values are sampled from a uniform distribution and they are randomly generated. For more details of the genome representation, please refer to~\cite{ecta14}.
 
-To clarify how the GAModel works, we use the same example as the one used in~\cite{ecta14}. The Kanto region, one of the four areas used in both studies, is divided into 2025 bins (a grid of 45x45 squares). Each bin has an area of approximately $25km^2$. The GAModel then calculates an expected number of earthquakes for every bin on a determined time interval, so the GA searches for good values in 2025 bins.
+We show an example to clarify how the GAModel works. The Kanto region, one of the four areas used in both studies, is divided into 2025 bins (a grid of 45x45 squares). The GAModel calculates an expected number of earthquakes for every bin on a determined time interval, so the GA searches for good values in 2025 bins.
 \paragraph{Fitness Function}\label{fitGA}
 
-The GAModel, as all the other methods, uses the log-likelihood value, as the fitness
-function. The fittest individual among all the others, is preserved in
-the next generation, to make the solution of one generation as good as
-the its last generation.  The bins, a gene of the genome
-representation, $b_n$, define the set $\beta$ and $n$ is the size of
-the set $\beta$:
+The GAModel uses the log-likelihood value, as fitness
+function. The fittest individual among all the others, is preserved in the next generation, to guarantee that the best solution of the present generation is at least as good as the one from former generation.  The bins $b_n$, define the set $\beta$ and $n$ is the size of the set $\beta$:
 \begin{equation} 
 \beta := {b_1,b_2,...,b_n},n = |\beta|.
 \end{equation}
 The probability values of the model $j$, expressed by the symbol
 $\Lambda$, is made of expectations $\lambda_i^j$ by bin $b_i$. The
 vector is define as:
-				
+
 \begin{equation}
-	\Lambda^j = 
+\Lambda^j = 
 \begin{pmatrix}
-    \lambda_1^j, 
-    \lambda_2^j, 
-    \hdots,
-    \lambda_i^j
-  \end{pmatrix}
-  ;\lambda_i^j := \lambda_i^j(b_i),b_i \in \beta
+\lambda_1^j, 
+\lambda_2^j, 
+\hdots,
+\lambda_i^j
+\end{pmatrix}
+;\lambda_i^j := \lambda_i^j(b_i),b_i \in \beta
 \end{equation}
-		
+
 The vector of earthquake quantity expectations is defined as:
 earthquake by time. The $\Omega$ vector is composed by observations
 $\omega_i$ per bin $b_i$, as the $\Lambda$ vector:
@@ -319,12 +284,12 @@ $\omega_i$ per bin $b_i$, as the $\Lambda$ vector:
 \begin{equation}
 \Omega = 
 \begin{pmatrix}
-    \omega_1,
-    \omega_2,
-    \hdots,
-    \omega_i
-  \end{pmatrix}
-  ;\omega_i =\omega_i(b_i),b_i \in \beta
+\omega_1,
+\omega_2,
+\hdots,
+\omega_i
+\end{pmatrix}
+;\omega_i =\omega_i(b_i),b_i \in \beta
 \end{equation}
 
 The calculation of the log-likelihood value for the $\omega_i$
@@ -332,56 +297,85 @@ observation with a given expectation $\lambda$ is defined as:
 
 
 \begin{equation}
-	L(\omega_i|\lambda_i^j) = -\lambda_i^j + \omega_i\log\lambda_i^j - \log\omega_i!
+L(\omega_i|\lambda_i^j) = -\lambda_i^j + \omega_i\log\lambda_i^j - \log\omega_i!
 \end{equation}
 
-The joint probability is the product of the likelihood of each bin, so
-the logarithm $L(\Omega|\Lambda^j)$ is the sum of for
+The joint probability is the product of the likelihood of each bin, so the logarithm $L(\Omega|\Lambda^j)$ is the sum of for
 $L(\omega_i|\lambda_i^j)$ every bin $b_i$:
 
 \begin{equation}\label{log-like}
 \begin{split}
-	L^j = L(\Omega|\Lambda^j) = \sum_{i=1}^{n}L(\omega_i|\lambda_i^j)  \\
-	= \sum_{i=1}^{n} -\lambda_i^j + \omega_i\log\lambda_i^j - \log\omega_i!  
+L^j = L(\Omega|\Lambda^j) = \sum_{i=1}^{n}L(\omega_i|\lambda_i^j)  \\
+= \sum_{i=1}^{n} -\lambda_i^j + \omega_i\log\lambda_i^j - \log\omega_i!  
 \end{split}
 \end{equation}
 
-The fitness function is a coded version of the equation
-~\ref{log-like}. It uses the probabilities of the bins of each
-individual of model for the $\lambda$ values.
+%The fitness function is a coded version of the equation
+%~\ref{log-like}. It uses the probabilities of the bins of each
+%individual of model for the $\lambda$ values.
 
 \paragraph{Evolutionary Operators}\label{gaOperators}
 The GAModel use a combination of operators made available by the Distributed Evolutionary Algorithms in Python (DEAP)~\cite{DeRainville}. We used the One Point Crossover for the crossover operator, the Polynomial Bounded Mutation for the mutation operator and for selection, we used Tournament selection and Elitism. The parameters are described in the Table~\ref{GAParameters5.1}.
 
 \begin{table}[H]
-  \caption{Parameters used in GAModel and Emp-GAModel}
-  \label{GAParameters5.1}
-  \begin{center}
-  \begin{tabular}{|l|r|}
-    \hline
-    Population Size & 500\\
-    Generation Number & 100\\
-    Elite Size & 1\\
-    Tournament Size & 3\\
-    Crossover Chance & 0.9\\
-    Mutation Chance (individual) & 0.1\\
-	Polynomial Bounded parameters & eta = 1, low = 0, up = 1\\
-    \hline    
-  \end{tabular}
-  \end{center}
+	\caption{Parameters used in GAModel and Emp-GAModel}
+	\label{GAParameters5.1}
+	\begin{center}
+		\begin{tabular}{|l|r|}
+			\hline
+			Population Size & 500\\
+			Generation Number & 100\\
+			Elite Size & 1\\
+			Tournament Size & 3\\
+			Crossover Chance & 0.9\\
+			Mutation Chance (individual) & 0.1\\
+			Polynomial Bounded parameters & eta = 1, low = 0, up = 1\\
+			\hline    
+		\end{tabular}
+	\end{center}
 \end{table}
 
 The parameters of the Polynomial Bounded mutation function are: 
 \begin{enumerate}
-\item eta = 1. Crowding degree of the mutation. A high eta will produce a mutant resembling its parent, while a small eta will produce a solution much more different;
-\item low = 0. The lower bound of the search space;
-\item up = 1. The upper bound of the search space.
+	\item eta = 1. Crowding degree of the mutation. A high eta will produce a mutant resembling its parent, while a small eta will produce a solution much more different;
+	\item low = 0. The lower bound of the search space;
+	\item up = 1. The upper bound of the search space.
 \end{enumerate}
 
-The chance of applying both mutation operator function and crossover operator function takes into account only their chance of occurrence. This means that it may be the case that one of them or both are not applied.
+The chance of applying both mutation and crossover operators takes into account only their chance of occurrence. This means that it may be the case that one of them or both are not applied.
 
-\subsubsection{ReducedGAModel}\label{ReducedGAModel}
-The GAModel defines a expected number of earthquakes for every single bin in the target region. That could lead to exhaustive and, sometimes worthless, searches. That is caused by the number of bins in the forecast and also because in some bins there are no earthquake occurrences in the observation data. That means that the GAModel has a lot of parameters and may of its bins have null values (values equal to 0). To avoid such unnecessary task we proposed the ReducedGAModel.
+\section{The Forecast Models Using Genetic Algorithm}\label{Models}
+
+All forecast models proposed in this paper are based in the
+CSEP framework.
+
+Each individual has its own representation of the framework based on
+different perceptions of what are the best aspects of the framework.
+
+Fo all methods, the population is trained on earthquake event data for a training
+period, which is anterior to the target test period. After completing
+the evaluation limit, the best individual is chosen to be the final
+forecast.
+
+\subsection{1-year Forecast Models}
+Large and independent earthquakes, also known as mainshocks, are
+followed by a wave of others earthquakes, the
+aftershocks~\cite{schorlemmer2010first}. Hence there is no physical
+measurement to identify mainshocks and its
+aftershocks~\cite{schorlemmer2010first}, we divided the forecast
+models in two groups: the ones that only forecasts mainshocks, using only GA techniques, and those that forecast both mainshocks and aftershocks using both GA techniques and empirical laws, such as the modified Omori law. These laws are use to derive the aftershocks from a synthetic data of mainshocks. 
+
+Both classes forecast earthquakes with magnitude greater than 3.0 for
+every scenario proposed.%, with a binning of 0.1, here named as cells to
+%avoid conflicts with the location bin. That results in magnitude cells
+%of [3.0, 3.1), [3.1, 3.2), until [9.9, 10). 
+
+
+\subsection{Mainshock Models}\label{mainshocksMethods}
+There are two mainshock models. The ones generated by the GAModel and the ones generated by the ReducedGAModel.
+
+\subsubsection{The ReducedGAModel}\label{ReducedGAModel}
+The GAModel defines a expected number of earthquakes for every single bin in the target region. That could lead to exhaustive and, sometimes worthless, searches. That is caused by the number of bins in the forecast and because in some bins there are no earthquake occurrences in the observation data. That means that the GAModel has a lot of parameters and may of its bins have null values (values equal to 0). To avoid such unnecessary task we proposed the ReducedGAModel.
 
 With this method, we aim to minimise the search space and the quantity of parameters the GA has to deal with. For that we changed the individual representation. The individuals in the ReducedGAModel only define expected number of earthquakes in bins that already had some occurrence in the past, giving a direction to where the GA should search. That helps the ReducedGAModel in the search for better solutions and it makes the convergence faster once the space search is smaller.
 
@@ -391,16 +385,15 @@ The ReducedGAModel has a similar description of the GAModel.The difference is th
 \paragraph{Genome Representation}\label{genomeReduced}
 The genome representation in the ReducedGAModel is a simplified version of the genome of the GAModel. For the ReducedGAModel, the genome is a list of ordered pairs. The first element of the pair are the coordinates of a bin in the model. The second element of the pair is a number that indicates an earthquake occurrence estimate for this bin.
 
-%TODO: explain this better
-To calculate the size of the individual we use the real data from the worse 5 years and create a list of every bin that had events in it, even if only once.
+To calculate the number of elements of the individual we use the real data from the prior 5 years and create a list of every bin that had events in it.
 
-In the ReducedGAModel, each individual is a list of a sub-region of the forecast model. This list initially refers to bins where earthquake events happened in the past. During the develop of the ReducedGAModel, the list may refer to positions that never had occurrences before. Each element of the list, a gene, also contains one real value between [0,1). In the initial population, these values are sampled from a uniform distribution and they are randomly generated. When needed, every real value is converted to a integer forecast by the same Algorithm, as in the GAModel.
+In the ReducedGAModel, each individual is a list of a sub-region of the forecast model. This list initially refers to bins where earthquake events happened in the past. During a execution of the ReducedGAModel, the list may refer to positions that never had occurrences before. Each element of the list, a gene, also contains one real value between [0,1). In the initial population, these values are sampled from a uniform distribution and they are randomly generated. When needed, every real value is converted to a integer forecast by the same Algorithm, as in the GAModel.
 
 To generate the forecast model we need to do an intermediate step. We map every location from the list with a bin in the forecast model.
 
 The genome size is usually smaller than the one used in the GAModel and the Emp-GAModel, once the amount of sub-regions where earthquakes with magnitude above 3.0 happened for any given area is smaller then the total number of genes of the individual.
 
-To exemplify, we use a similar example as the one in the Section~\ref{GAModel}. Lets consider that there are 10 bins with occurrences in Kanto in the last 5 years. It will make the GA start searching for good values for only those 10 bins, leaving the other 2015 bins empty, representing zero occurrence. It is important to highlight that in the worst case, it will make the same amount of searches as the GAModel. The final forecast model will maintain the amount of bins with occurrence, but the number of events for every bin and their location may change.
+To illustrate, we give the following example. Lets consider that there are 10 bins with occurrences in Kanto in the last 5 years. It will make the GA start searching for good values for only those 10 bins, leaving the other 2015 bins empty, representing zero occurrence. It is important to highlight that in the worst case, it will make the same amount of searches as the GAModel. The final forecast model will maintain the amount of bins with occurrence, but the number of events for every bin and their location may change.
 
 \paragraph{Fitness Function}
 The fitness function is the same as in the GAModel,~\ref{fitGA}. Here is also important to generate the forecast model by applying the map function on the individual.
@@ -549,7 +542,7 @@ In Figure~\ref{histogramQuakes}, it is possible to understand that most of the e
 
 \begin{figure}[]
 	\centering
-	\includegraphics[scale=0.15, left]{img/detphsNew.png}
+	\includegraphics[scale=0.15]{img/detphsNew.png}
 	\caption{Depth Histogram of earthquakes.}
 	\label{histogramQuakes}
 \end{figure}
