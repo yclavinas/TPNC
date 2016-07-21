@@ -204,8 +204,7 @@ From the the pairing analysis, we decided to use the \textit{ReducedGAModelSLC} 
 
 %TODO: add only the real and the best model figures
 \subsubsection{The Models Examples And The Real Data}
-
-The Figure~\ref{gamodel2005eastjapan} shows a model from the GAModel method for the year 2005 in East Japan. The next Figure,~\ref{reduced2005eastjapan} shows a model from the ReducedGAModel~\ref{reducedGAModel} method for the year 2005 in East Japan.
+The Figure~\ref{ReducedGAModelSLC-} shows a model from the ReducedGAModelSLC method for the year 2005 in East Japan. The next Figure,~\ref{reduced2005eastjapan} shows a model from the ReducedGAModel~\ref{reducedGAModel} method for the year 2005 in East Japan.
 
 All Figures,~\ref{gamodel2005eastjapan}~\ref{reduced2005eastjapan}~\ref{hybridgamodel2005eastjapan}~\ref{hybridreduced2005eastjapan},  indicate a low earthquake intensity as white while the more intensity areas, are shown in red. They are, in order, the data visualisation for the model from: the GAModel, the ReducedGAModel, the Emp-GAModel and the Emp-ReducedGAModel for East Japan in 2005. The Figure~\ref{real2005eastjapan} represents the earthquake occurrences in the same region and year.
 
@@ -251,8 +250,8 @@ All Figures,~\ref{gamodel2005eastjapan}~\ref{reduced2005eastjapan}~\ref{hybridga
 
 
 \subsection{Magnitude Experiment}\label{magExp}
+The goal is to discover if there is any variation in the methods when considering the magnitude of the earthquakes in the models. We wanted to explore the relation between the magnitude of the earthquakes and how would the models behave on those situations. To achieve that, we used the ANOVA test The confidence interval was set to 95\%.
 
-In this experiment, we focused on studying how the magnitude of an earthquake affects the model quality, because the patterns of the earthquakes are depended of its magnitude. We wanted to explore the relation between the magnitude of the earthquakes and how would the models behave on those situations.
 
 For that, we created magnitude intervals, where each interval is named as a slice. A slice is an closed interval of 1.0 degree  starting from 3.0 degrees of magnitude, see Section~\ref{catalogs}, and ending in 10.0 degrees. For example, $[3.0-4.0]$ or $[7.0-8.0]$ are two different slices. For each model, we selected only the earthquakes that belong to a slice. Then, we calculate the log-likelihood value.
 \subsubsection{Magnitude Study}
