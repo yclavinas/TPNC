@@ -1,17 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Introduction}\label{intro}
 
-%% Goals of the intro
 % Why are we studying this problem
-% Context of our work (previous work)
-% Motivation for this work (our idea)
-% Summary of our contribution
-% Summary of our results
-
-
-
-% Heavy change in the motivation, the second half of the original
-% paragraph was quite hard to understand.
 Earthquakes can cause great damage to human society through soil
 rupture, movement, tsunami, etc. Some recent earthquakes that
 highlight this destructive potential are the great East Japan
@@ -24,116 +14,102 @@ generate earthquakes, and are important to increase our understanding
 of these events.
 
 
-%% It would be VERY GOOD if we could replace this figure with a new 
-%% One of the same area/location with the earthquakes colored by 
-%% cluster. This would reinforce the clustering characteristic of the 
-%% paper.
-%\begin{figure}[]
-%\centering
-%\includegraphics[width=.45\textwidth]{img/earthquakes2011.png}
-%\caption{Seismic Activity in Eastern Japan in 2011. Each blue dot
-%  represents one earthquake}
-%\label{GreatEastJapan}
-%\end{figure}
-
-%this figure I got from Gabriels work. It shows earthquake clusters from 2003 to 2011. It doesnt look too good for me. Maybe we can take a look at Gabriels code and adapt it
+% \cite{ecta14} opening image. Would be better to have a clustered one.
 \begin{figure}[]
-	\centering
-	\includegraphics[width=.55\textwidth]{img/slc_leste.png}
-	\caption{Seismic Activity in Eastern Japan during the years of 2003 to 2011.}
-	\label{GreatEastJapan}
+\centering
+\includegraphics[width=.45\textwidth]{img/earthquakes2011.png}
+\caption{Seismic Activity in Eastern Japan in 2011. Each blue dot
+  represents one earthquake}
+\label{GreatEastJapan}
 \end{figure}
 
+% Gabriel's image, does not look very good.
+%\begin{figure}[]
+%	\centering
+%	\includegraphics[width=.55\textwidth]{img/slc_leste.png}
+%	\caption{Seismic Activity in Eastern Japan during the years of 2003 to 2011.}
+%	\label{GreatEastJapan}
+%\end{figure}
+
+% Context of our work
 In our previous work~\cite{ecta14}, we proposed a way to generate
 earthquake risk models using a standard Genetic Algorithm (here called
 the GAModel). The GA model was shown to be competitive with the
 Relative Intensity (RI) model, while not using any a-priori
-information about the distribution of earthquake occurrences. However,
-we have identified a number of issues with the GAModel. Addressing
-these issues will be the focus of this paper.
+information about the distribution of earthquake occurrences. We
+summarize the GAModel, and other relevant literature, in
+Section~\ref{estadoArte}. However, we have identified two key issues
+with the GAModel. Addressing these issues will be the focus of this
+paper.
 
-The first issue was that the GAModel used a genome representation for
-the risk model with a too large number of parameters (over 2000 for
-regular cases). In the final models evolved, the parameters with least
-importance for a certain scenario would show random drift in their
-values, indicating that they were not contributing for the overall
-model.  To address this issue, we proposed the ReducedGAModel. The
-basic idea of the ReducedGAModel is that only areas with a minimal
-probability of earthquake occurrence are represented as parameters in
-evolutionary process. We expect that changing the representation in
-this way may increase the convergence speed of the evolutionary
-process.
+% Ideia and contribution: First issue, representation was too sparse.
+% TODO: the non contribution of the parameters is evidenced by the
+% random noise of the parameters. It might be good to approach this in
+% section 2.
+The first issue is that the genome representation used by GAModel has
+too many parameters (over 2000 for regular cases). Even though a
+majority of these parameters do not contribute for the accuracy of the
+final risk model, the size of the search space implies a slower
+optimization time. To address this issue, we propose a new genome
+representation for an earthquake risk model, which we call
+ReducedGAModel. In the ReducedGAModel, only areas with minimal
+probability of an earthquake are represented as parameters in the
+evolutionary process. By reducing the search space, this
+representation is expected to also increase the convergence speed of
+the evolutionary optimization process.
 
-The second issue was that GAModel did not take into account any 
-sort of domain knowledge, such as the assumption that earthquakes
-cluster in both time and space.
-% End of current changes
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Second issue: Hybridization with domain knowledge
+The second issue is that GAModel does not take into account any sort
+of domain knowledge, such as the assumption that earthquakes cluster
+in both time and space. Heuristic search methods such as Genetic
+Algorithms usually benefit from the introduction of domain knowledge
+to the search. Therefore, we propose a hybrid version of the GAModel
+which incorporates seismic models of earthquake decay. This version,
+named Emp-GAModel (Empiric GA Model), generates a model with a much
+smaller number of earthquakes than the regular GAModel. For each
+earthquake in this model, a sequence of aftershocks is generated using
+an adaptation of the Epidemic Type Aftershock Sequence model
+(ETAS). We expect that this hybrid approach will produce more accurate
+models.
 
-%% TODO:
-% Second issue, we do not use domain knowledge. Risk is assigned randomly
-% Solution, emp-GAmodel, where we generate only ``main shocks'' first,
-% and generate aftershocks from the main shocks using ETAS.
+The two proposed adaptations are described in detail in
+Section~\ref{Models}. To analyze their contributions, we perform a
+simulated comparison of the GAModel, the ReducedGAModel, the
+EMP-GAModel, and a combined ReducedEmp-GAModel, which combine both 
+adaptations. 
 
-% In this paper we will explore EMPGA and ReducedGA separately, as well as 
-% In concert (ADD new 2x2 figure/table here)
+This simulated comparison follows Regional Earthquake Likelihood Model
+(RELM) framework described by the Collaboratory for the Study of
+Earthquake Predictability
+(CSEP)~\cite{schorlermmer2007earthquake}. This framework dictates the
+format of the risk model and the utility function used to evaluate the
+quality of a risk model (defined as the log-likelihood of the past
+earthquake occurrence data given the model). The data used in the
+comparisons is the earthquake occurrence catalog from the Japanese
+Meteorological Agency (JMA). We focus on earthquakes occurring in the
+Japanese archipelago between 2000 and 2010. The RELM framework is
+described in section~\ref{Tests}
 
-% Third issue, clustering. ``it is known'' that clustering earthquakes
-% and removing aftershocks may make earthquake catalogs easier to analyse
-% In this sense, we use two different clustering techniques, and 
-% Test the above GAmodel variations in the clustered catalog as well
+% TODO: Need many citations regarding declustering
+Furthermore, we examine the effect of ``de-clustering'' a catalog in
+the generation of risk models. In seismological jargon,
+``de-clustering'' refers to the act of identifying groups of
+main shock-aftershock earthquakes, and removing all but the main shocks
+from the catalog, which is considered the representative earthquake
+for the group. Accordingly, a ``de-clustered'' earthquake catalog is
+considered to be easier to study, given that the de-clustering process
+removes redundant information. On the other hand, there are some
+researchers that do not agree with this idea.
 
-% The results show which approaches improve on the results of the 
-% Original GAModel, and which do not offer any significant contribution
+In our experiments, we use three catalogs: one that did not undergo
+de-clustering (original catalog), and two de-clustered catalogs,
+generated by two different de-clustering methods: Window and Single
+Link Cluster. The de-clustering strategies are described in
+section~\ref{exp}
 
-% Suggestion: new section division:
-% Section 1- Introduction
-% Section 2- Bibliography and GAmodel review
-% Section 3- Reduced GA and EMP-GA
-% Section 4- Clustering the catalog
-% Section 5- Experiments
-% Section 6- Discussion of the results
-% Section 7- Conclusions
+Our experimental results, detailed in section~\ref{Results}, indicate
+that XXXXXXXXXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXXXX
+XXXXXXXXXXX XXXXXXXXXXXXXxx XXXXXXXXXXXXXXX. We conclude that YYYYYYY
+YYYYYYYYY YYYYYYYYYYYYYYYYYY YYYYYYYYYYYYYYYYYYy YYYYYYYYYYYY.
 
 
-%%%%%%%%%%%%%%%%%%%%%%% Untouched text %%%%%%%%%%%%%%%%%%%%%%%%%
-The other idea is based on the assumption that earthquakes cluster in
-both space and time, and we want incorporate in the Genetic Algorithm
-technique (GA) some geophysical knowledge. It is a hybridisation of
-the models generated with GA some empirical laws, such as the modified
-Omori law. First, the background intensity (the independent
-earthquakes or mainshocks), which is a function of the space, is
-forecast using the GA. Then, we use some empirical laws to obtain the
-dependent earthquakes (aftershocks) for a specific time interval.
-
-The Emp-GAModel is a method proposed that incorporates some
-geophysical knowledge. It is a hybridization of the models generated
-by the GAModel with the these empirical laws, see Section
-\ref{Models}.
-
-Finally, there is the Emp-ReducedGAModel. This method is a combination
-of the two ideas. Therefore, it also performs a hybridization of
-models with the group of empirical law. Though, for this method, the
-models are generated by the ReducedGAModel.
-
-The forecast models produced by those methods and the ones produced by
-the GAModel were all analyzed by their log-likelihood values
-calculated as suggested by the Regional Earthquake Likelihood Model
-(RELM)~\cite{schorlemmer2007earthquake}.
-
-For developing the methods and to be able to compare them we used the
-earthquake catalog from the Japanese Meteorological Agency (JMA),
-using event data from 2005 to 2010.
-
-This paper is organized as: in Section \ref{estadoArte}reviews
-applications of Evolutionary Computation in the context of seismology
-research. The next Section,Section \ref{Models}, we give a details of
-each of the forecast proposed covering the Collaboratory for the Study
-of Earthquake Predictability (CSEP) framework and the empirical
-laws. In Section \ref{Tests}, we give the description of the tests
-proposed in~\cite{Schorlemmer2007}. After that, in \ref{exp}, we
-define the target areas used for the experiment and the data from the
-JMA; we clarify the design followed during the experiments and how we
-compared the forecast models derived from our methods. Finally, we
-show the results and conclude this work in~\ref{Results} and
-\ref{Conclusions}.
