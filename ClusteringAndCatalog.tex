@@ -3,7 +3,7 @@ Here we describe the earthquake catalogue, how we used it and the regions in Jap
 
 We also preprocessed the catalogue. We wanted to analyse how earthquakes characteristic changed with the magnitude and the depth. Also we explain briefly how we classified the mainshocks and aftershocks.
 
-\subsubsection{Earthquake data}
+\subsubsection{Clustering and Catalog}
 The goal of this research is to find existing patterns in the occurrence of earthquakes. For that it is essential to access trustful data and to explore its details. From the  {\it Japan Meteorological Agency} web page we obtained earthquake data about earthquakes in Japan. In this data there are information about earthquakes that happened in or nearby Japan,  with the variables: time of the occurrence, magnitude, latitude and longitude and epicentre depth, for the years of 2000 to 2013.
 
 During the preprocessing phase, we discovered a higher number of occurrences of earthquakes during the year of 2011, when a 9.0 $M_w$ earthquake happened, see Section~\ref{chapter1}. This earthquake triggered too many after called aftershocks in all Japan. It is considered that big earthquakes may cause others earthquakes~\cite{zhuang2004analyzing}. In~Figure \ref{ocorrenciasAno} it is possible to visualise a great number of earthquakes for the year of 2011. Because of this abnormal behaviour and because we decided to focus on more stable occurrences, we limited the training base to earthquakes until 2010.
@@ -30,15 +30,15 @@ We also selected some sub-areas in Japan to better extract and understand earthq
 \end{figure}
 
 
-They are described as follows:
+The regions are described as follows:
 
-\paragraph{Kanto} Kanto is the region around Tokyo. It is an area with high seismologic activity during the years we studied. Its coordinates are 34.8 North, 138.8 West, with  2025 bins. Each bin covers an area of approximately 25km$^2$.
+\paragraph{\textbf{Kanto}} Kanto is the region around Tokyo. It is an area with high seismologic activity during the years we studied. Its coordinates are 34.8 North, 138.8 West, with  2025 bins. Each bin covers an area of approximately 25km$^2$.
 
-\paragraph{Kansai} Kansai is the region that includes Kyoto, Osaka and many others historical cities. In this area, rather than Kanto area, there is a small seismic activity. Its coordinates are 34 North, 134.5 West, with 1600 bins. Each bin covers an area of approximately 25km$^2$.
+\paragraph{\textbf{Kansai}} Kansai is the region that includes Kyoto, Osaka and many others historical cities. In this area, rather than Kanto area, there is a small seismic activity. Its coordinates are 34 North, 134.5 West, with 1600 bins. Each bin covers an area of approximately 25km$^2$.
 
-\paragraph{Touhoku} Touhoku is the region in the North of the main Japanese island. It has some clusters of seismic activities during the years we studied. Its coordinates are 37.8 North, 139.8 West, with  800 bins. Each bin covers an area of approximately 100km$^2$. 
+\paragraph{\textbf{Touhoku}} Touhoku is the region in the North of the main Japanese island. It has some clusters of seismic activities during the years we studied. Its coordinates are 37.8 North, 139.8 West, with  800 bins. Each bin covers an area of approximately 100km$^2$. 
 
-\paragraph{East Japan} Is the region that is related with the east coast of Japan. It is the most different area, because it has earthquakes that happened both in land or in the sea. It was in this region that the 9.0 $M_w$ earthquake happened. Its coordinates are 37 North, 140 West, with 1600 bins. Each bin covers an area of approximately 100km$^2$. 
+\paragraph{\textbf{East Japan}} Is the region that is related with the east coast of Japan. It is the most different area, because it has earthquakes that happened both in land or in the sea. It was in this region that the 9.0 $M_w$ earthquake happened. Its coordinates are 37 North, 140 West, with 1600 bins. Each bin covers an area of approximately 100km$^2$. 
 
 \subsubsection{Depth Histogram of Earthquakes}
 
@@ -65,7 +65,7 @@ The question is how should it be done. The simplest way, is to select earthquake
 \begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.35]{img/Magnitude2003Kanto.png}
-	\caption{Histogram of earthquakes stronger than 3.0 in the Richter Scale in Kanto}
+	\caption{Histogram of earthquakes stronger than 3.0 in Kanto}
 	\label{quakesKanto}
 \end{figure}
 
