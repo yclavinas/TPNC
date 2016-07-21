@@ -59,11 +59,11 @@ Based on the results of the ANOVA test, it is evident that all variables are sig
 
 Because we found statistically significant result, we applied a Post-hoc comparisons using the Tukey HSD analysis methodology on the ANOVA result. It compared each condition with all others. For example, it compares the values from the GAModel with the GAModelWindow. 
 
-It indicated that the models Emp-ReducedGAModelWindow, GAModelWindow, ReducedGAModelWindow, GAModelSLC, ReducedGAModelSLC achieve statistically better or equal results in terms of log-likelihood when compared with the other models. When they are compared with themselves, they are statistically equal. 
+It indicated that the models GAModelSLC, Emp-ReducedGAModelWindow, GAModelWindow, ReducedGAModelWindow, ReducedGAModelSLC achieve statistically better or equal results in terms of log-likelihood when compared with the other models. When they are compared with themselves, they are statistically equal. 
 
 We applied the ANOVA test now only with this 5 models. The models group have a ``p-value'' of 0.171, indicating that they have similar log-likelihood values. The results are in the Table~\ref{anovatest2}.
      
-\begin{table*}[!htb]
+\begin{table*}[]
 	\centering
 	\begin{tabular}{|l|l|l|l|l|l|}
 		\hline
@@ -80,23 +80,14 @@ We applied the ANOVA test now only with this 5 models. The models group have a `
 	\label{anovatest2}
 \end{table*}
 
-Therefore, to confirm that the models are statistically equal, we conducted the Tukey HSD on this ANOVA result, see Figure~\ref{modelANOVA-100and5}.
+Therefore, to confirm that the models are statistically equal, we conducted the Tukey HSD on this ANOVA result. This time, we found statistically significant difference only for the year and region groups. To show that the models results are not statistically different from each other, we applied a pairing analysis.
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[scale=0.28]{img/modelANOVA-100and5.png}
-	\caption{Intervals of Confidence 95\% of differences between the Mainshock Models Mainshock and the Aftershock Models, taken two by two.}
-		\label{modelANOVA-100and5}
-\end{figure}
+From the the pairing analysis, we decided to use the \textit{ReducedGAModelSLC} as the representative method of this study. That is because, in all cases when its values were compared, it showed a better performance in the means of the log-likelihood values and in only one case the ``p-value'' was higher than 0.05. For the results, see the Table~\ref{Paired}.
 
-This time, we found statistically significant difference only for the year and region groups. To show that the models results are not statistically different from each other, we applied a pairing analysis.
-
-From the the pairing analysis, we decided to use the \textit{ReducedGAModelSLC} as the representative method of this study. That is because, in most cases when its values were compared, it showed a little better performance in the means of the log-likelihood values. For the results, see the Table~\ref{Paired}.
-
-In this Table, the column labelled $\mu_a - \mu_b$ shows the result of paired difference between the models referred in the ``Models Compared'' column. The p-value shows the significance value of the paired {\it Student's t-test} for the null hypothesis `` The paired difference of the means of the models is equal''.
+%In this Table, the column labelled $\mu_a - \mu_b$ shows the result of paired difference between the models referred in the ``Models Compared'' column. The ``p-value'' shows the significance value of the paired {\it Student's t-test} for the null hypothesis ``The paired difference of the means of the models is equal''.
 
 
-\begin{table*}[!htb]
+\begin{table*}[]
 	\begin{center}
 		\begin{tabular}{|c|c|c|c|}
 			\hline
@@ -183,7 +174,7 @@ In this Table, the column labelled $\mu_a - \mu_b$ shows the result of paired di
 			
 			\hline
 			Kanto & EMP-\textbf{GAModelWindow} - GAModelWindow &
-			57.95612 & p-value = 0.00138\\
+			57.95612 & 0.00138\\
 			& \textbf{EMP-GAModelWindow} - ReducedGAModelWindow &
 			79.60781 & 3.441e-05\\
 			& \textbf{EMP-GAModelWindow} - GAModelSLC &
@@ -205,7 +196,7 @@ In this Table, the column labelled $\mu_a - \mu_b$ shows the result of paired di
 			\hline
 		\end{tabular}
 	\end{center}
-	\caption{Paired Experiment Result. The bold models are the ones with high}
+	\caption{Paired Experiment Result. The bold models are the ones with better results. The ReducedGAModelSLC always achieved better results, therefore it is also underlined.}
 	\label{Paired}
 \end{table*}
 
