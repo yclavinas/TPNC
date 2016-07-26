@@ -78,18 +78,12 @@ is the earthquake observation data up to time $t$.
 \subsubsection{Genome Representation}\label{genomeGA}
 In the GAModel each individual represents an entire forecast model. A individual is a real valued array X, where each element corresponds to one bin in the desired model (the number of bins n is defined by the region considered).
 
-The values are sampled from the interval $[0,1)$. These real values are converted to a integer forecast, by a modification of the Poisson deviates extraction algorithm~\ref{inversePoisson} used in~\cite{ecta14}.In it $x$ is the real value that will be converted and $\mu$ is the mean of the earthquakes observations in the real data.
+The values are sampled from the interval $[0,1)$. These real values are converted to a integer forecast, by a modification of the Poisson deviates extraction algorithm~\ref{inversePoisson} used in~\cite{ecta14}. In it $x$ is the real value that will be converted and $\mu$ is the mean of the earthquakes observations in the real data.
 
-\begin{algorithm}\label{inversePoisson}
+\begin{algorithm}[H]\label{inversePoisson}
 	\caption{Obtain a Poisson deviate from a $[0,1)$ value}
-	\label{InversePoisson}[H]
 	\begin{algorithmic}
 		\STATE $L \gets \exp{(-\mu)}, k \gets 1, prob \gets 1 * x$
-		\REPEAT 
-		\STATE $\text{increment }k$
-		\STATE $prob \gets prob*x$
-		\UNTIL{$prob > L$}
-		\RETURN $k$
 		\WHILE{$prob > L$} 
 		\STATE $k \gets k + 1$
 		\STATE $prob \gets prob*x$
@@ -177,12 +171,12 @@ The GAModel use a combination of operators made available by the Distributed Evo
 	\end{center}
 \end{table}
 
-The parameters of the Polynomial Bounded mutation function are: 
-\begin{enumerate}
-	\item eta = 1. Crowding degree of the mutation. A high eta will produce a mutant resembling its parent, while a small eta will produce a solution much more different;
-	\item low = 0. The lower bound of the search space;
-	\item up = 1. The upper bound of the search space.
-\end{enumerate}
+%The parameters of the Polynomial Bounded mutation function are: 
+%\begin{enumerate}
+%	\item eta = 1. Crowding degree of the mutation. A high eta will produce a mutant resembling its parent, while a small eta will produce a solution much more different;
+%	\item low = 0. The lower bound of the search space;
+%	\item up = 1. The upper bound of the search space.
+%\end{enumerate}
 
 The chance of applying both mutation and crossover operators takes into account only their own chance of occurrence. This means that it may be the case that one of them or both are not applied.
 
