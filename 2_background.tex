@@ -1,0 +1,208 @@
+\section{Background}
+\label{sec:background}
+
+An Earthquake Risk model states the probability of earthquake
+occurrence on a defined area and time period. These models are often
+based on past ocurrence of earthquakes (historical catalogs).  They
+can also make use of seismic properties of the area under study, such
+as faults, terrain properties, etc.
+
+The ``prediction'' of earthquakes is a polemic subject, and no
+research so far has come close to suggesting that individual large
+scale earthquakes can be predicted. On the other hand, there is value
+on the study of earthquake mechanisms and the generation of
+statistical models of earthquake risk~\cite{Nature1999}.
+
+In our previous work~\cite{ecta14}, we use a Genetic Algorithm (GA) to
+optimize an Earthquake Risk Model, which is described in the framework
+proposed by the Collaboratory for the Study of Earthquake
+Predictability (CSEP).
+
+In the following subsections we describe both the CSEP framework and
+the original GAModel. After that, we overview other relevant works
+combining evolutionary approaches and the study of earthquakes.
+
+\subsection{CSEP Forecast Framework}
+
+The CSEP framework defines a model in reference to a geographical
+region and a time period~\cite{zechar2010evaluating}. The geographical
+region is divided in a grid, where each cell in the grid is called a
+bin.
+
+For example, in this paper we define the “Kanto” region as as the area
+covered by latitude N34.8 to N37.05, and longitude E138.8 to
+E141.05. This area is divided into 2025 bins (a grid of 45x45
+squares).  Each bin has an area of approximately 25km$^2$
+
+The model defines a number of expected earthquakes for each bin.  This
+number must be a positive integer. A good model is one where the
+number of estimated earthquakes in each bin corresponds to the actual
+number of earthquakes that occurs in that bin during the target time
+interval.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%&&&&&&&&&&&&&&&&&&&&&&
+\subsection{The GAModel}\label{sec:background:gamodel}
+
+Using the CSEP framework described in the previous subsection, we
+proposed the GAModel~\cite{ecta14}. The GAModel uses Genetic
+Algorithms to generate an earthquake risk model based on earthquake
+catalog data.
+
+In the GAModel, each individual is a candidade Risk Model, which is
+equivalent to a prediction $\Lambda = \{\lambda_1, \lambda_2, \ldots,
+\lambda_n\}$ in the CSEP framework. The Genetic Algorithm will then
+select the individuals based on the log-likelihood between the model
+represented by the individual, and the catalog of earthquake
+occurrences in the target location and time period.
+
+\subsubsection*{Genome Representation}
+
+In the GAModel, each indian individual is represented as real valued
+array, where each element in the array is latitude/longitude bin in
+the target area for the desired model. Each bin is associated to a
+real value representing the earthquake risk in that location. For the
+initial population, these values are drawn from an uniform
+distribution between 0 and 1.
+
+% TODO, maybe add the ``bins'' image from ECTA
+
+During fitness evaluation, the risk value at each bin is converted to
+an integer forecast, using a modification of the inverse poisson
+function depicted in algorith~\ref{inversePoisson}. In this algorithm,
+$x$ is the real value to be converted and $\mu$ is the mean of
+earthquake observations across all bins in the catalog data.
+
+\begin{algorithm}[H]\label{inversePoisson}
+  \caption{Obtain a Poisson deviate from a $[0,1)$ value}
+    \label{inversePoisson}
+    \begin{algorithmic}
+      \STATE $L \gets \exp{(-\mu)}, k \gets 1, prob \gets 1 * x$
+      \WHILE{$prob > L$} 
+      \STATE $k \gets k + 1$
+      \STATE $prob \gets prob*x$
+      \ENDWHILE
+      \RETURN $k$
+    \end{algorithmic}
+\end{algorithm}
+
+\subsubsection*{Fitness Function}
+
+The GAModel uses the log-likelihood value between one individual
+and the catalog data as its fitness function.
+
+Let an individual $X = \{x_1, x_2, \ldots, x_N\}$, where $x_i$ is the
+risk value associated with bin $i$, and $N$ is the total number of
+bin. From $X$ we obtain the earthquake forecast $\Lambda =
+\{\lambda_1, \lambda_2, \ldots, \lambda_N\}$ using
+algorithm~\ref{inversePoisson}. This forecast is also the vector of
+earthquake quantity expectations.
+
+Let the set of earthquake ocurrences from the catalog be $\Omega =
+\{\omega_1, \omega_2, \ldots, \omega_N\}$. The calculation of the
+log-likelihood value for the $\omega_i$ observation with a given
+expectation $\lambda$ is defined as:
+
+\begin{equation}
+L(\omega_i|\lambda_i) = -\lambda_i + \omega_i\log\lambda_i - \log\omega_i!
+\end{equation}
+
+The joint probability is the product of the likelihood of each bin, so
+the log likelihood $L(\Omega|\Lambda)$ for the entire vector is the
+sum of $L(\omega_i|\lambda_i)$ for every bin $i$:
+
+\begin{equation}
+L(\Omega|\Lambda) = \sum_{i=1}^{n}L(\omega_i|\lambda_i) \\ =
+\sum_{i=1}^{n} -\lambda_i + \omega_i\log\lambda_i - \log\omega_i!
+\end{equation}
+
+Finally, this value is calculated for each year that composes the
+training data, using the ``time slices'' method described
+in~\cite{ecta14}.
+
+
+\subsubsection*{Evolutionary Operators}\label{gaOperators}
+
+GAModel uses One Point Crossover, Polynomial Bounded Mutation,
+Tournament Selection and Elitism. The chance for using crossover and
+mutation operators is tested independently for each individual in the
+new population.
+
+Valuse for the parameters for these operators are listed in
+Table~\ref{GAParameters5.1}. These values are generally the same as
+used in~\cite{ecta14}.
+
+\begin{table}[H]
+  \caption{Parameters used in the GAModel}
+  \label{GAParameters5.1}
+  \begin{center}
+    \begin{tabular}{|l|r|}
+      \hline
+      Population Size & 500\\
+      Generation Number & 100\\
+      Elite Size & 1\\
+      Tournament Size & 3\\
+      Crossover Chance & 0.9\\
+      Mutation Chance (individual) & 0.1\\
+      Polynomial Bounded parameters & eta = 1, low = 0, up = 1\\
+      \hline    
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\subsection{Related Literature}
+
+The usage of Evolutionary Computation (EC) in the field of earthquake
+risk models is somewhat sporadic. Zhang and Wang~\cite{Zhang2012} used
+Genetic Algorithms to fine tune an Artificial Neural Network (ANN) and
+used this system to produce a forecast model. Zhou and
+Zu~\cite{Feiyan2014} also proposed a combination of ANN and EC, but
+their system forecasts only the magnitude parameter of
+earthquakes. Sadat, in~\cite{sadat2015application}, used ANN and GA to
+predict the magnitude of the earthquakes in North Iran.
+
+%Fault Model parameters
+There are more works when we discuss EC methods and estimation of
+parameter values in seismological models. Nicknam et
+al.~\cite{Nicknam2010} simulated some components from a seismogram
+station and predicted seismograms for other stations. They combined
+the Empirical Green’s Function (EGF) with GA. Kennett and
+Sambridge~\cite{Kennett1992} used GA and associated teleseisms
+procedures to determine the Fault Model parameters of an
+earthquake. By doing so, they demonstrated that non-linear inversion
+can be achieved for teleseismic problems without any calculation of
+waves travel times.
+
+%PGA
+Another popular approach is to use EC methots do calculate the Peak
+Ground Acceleration (PGA) parameter. The works done by Kerh et
+al.~\cite{Kerh2010, Kerh2015} are a combination of ANN and GA to
+estimate or predict PGA in Taiwan. Their goal was to decide which
+areas may be considered potentially hazardous areas and they focused
+on urban areas. They also stated that PGA is inversely proportional to
+epicentre distance. Cabalar and Cevik~\cite{Cabalar2009} work also
+aimed to predict the PGA, but their work uses genetic programming (GP)
+and use strong-ground-motion data from Turkey.
+
+Jafarian et al.~\cite{jafarian2010empirical}, used GP to develop an
+empirical predictive equation $v_max/a_max$ ratio of the shallow
+crustal strong ground motions recorded at free field sites. They found
+a relation between the $v_max/a_max$ and the earthquake magnitude and
+the source-to-site distance.
+ 
+Ramos and Vázques~\cite{Ramos2011} used Genetic Algorithms to decide
+the location of sensing stations. In this work they achieved, in
+general, better results with the GA method when compared with the
+Seismic Alert System (SAS) method and a greedy algorithm
+method. Saeidian et al.~\cite{saeidian2016evaluation} work also based
+on the same idea of locating sensing stations. They do a comparison in
+performance between the GA and Bees Algorithm (BA) to decide which of
+those techniques would perform better when choosing the location of
+sensing stations. He found out that the GA was faster than the BA.
+
+Huda and Santosa \cite{ijse5762} published a paper in which the goal
+was to find, via GA, the speed of the waves P and S in the mantle and
+in the earth crust. P waves are indicated as the first fault found in
+seismological data and S waves are the changes caused in the phase of
+a P wave~\cite{ijse5762}. This work aimed to obtain a structure of the
+Japanese underground.

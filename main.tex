@@ -22,7 +22,7 @@
 %\usepackage[export]{adjustbox}
 %\usepackage{pdfpages}% incluir PDFs, usado no apêndice
 
-\usepackage[brazil,american]{babel}
+%\usepackage[brazil,american]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{indentfirst}
 %\usepackage{natbib}
@@ -74,13 +74,8 @@
 
 \begin{document}
 
-% Titles are generally capitalized except for words such as a, an, and, as,
-% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
-% not capitalized unless they are the first or last word of the title.
-% Linebreaks \\ can be used within to get better formatting as desired.
-% Do not put math or special symbols in the title.
 \title{Improving the Generation of Earthquake Risk Models\\ Using
-  Evolutionary Algorithms tempered by Domain Knowledge}
+  Evolutionary Algorithms Tempered by Domain Knowledge}
 
 
 % author names and affiliations
@@ -90,6 +85,11 @@
 \IEEEauthorblockA{University of Brasilia\\
 Computer Science Department\\
 yclavinas@gmail.com}
+\and
+\IEEEauthorblockN{Xiucai Ye}
+\IEEEauthorblockA{University of Tsukuba\\
+  Graduate School of SIE\\
+yexiucai@mma.cs.tsukuba.ac.jp}
 \and
 \IEEEauthorblockN{Marcelo Ladeira}
 \IEEEauthorblockA{University of Brasilia\\
@@ -101,11 +101,6 @@ mladeira@unb.br}
 Graduate School of SIE\\
 caranha@cs.tsukuba.ac.jp}}
 
-% conference papers do not typically use \thanks and this command
-% is locked out in conference mode. If really needed, such as for
-% the acknowledgment of grants, issue a \IEEEoverridecommandlockouts
-% after \documentclass
-
 \maketitle
 
 % As a general rule, do not put math, special symbols or citations
@@ -113,7 +108,7 @@ caranha@cs.tsukuba.ac.jp}}
 \begin{abstract}
 
 % File with the abstract
-\input{abstract.tex}
+\input{0_abstract.tex}
 
 \end{abstract}
 
@@ -124,125 +119,22 @@ caranha@cs.tsukuba.ac.jp}}
 \IEEEpeerreviewmaketitle
 
 % Main file with the paper
-\input{introduction.tex}
-\input{BibAndGamodel.tex}
-\input{ReducedgaAndEMmpga.tex}
-\input{ClusteringAndCatalog.tex}
-\input{Experiments.tex}
-% Section 6- Discussion of the results
-% Section 7- Conclusions
-\input{Conclusions.tex}
+\input{1_intro.tex}
+\input{2_background.tex} % Earthquake model, CSEP, references (including italy)
+\input{3_proposed.tex}
+\input{4_experiment.tex}
+\input{5_results.tex}
+\input{6_discussion.tex}
+\input{7_conclusion.tex}
+
+\section*{Acknowledgments}
+The authors would like to thank the Japan Meteorological Agency for
+making available the earthquake catalog used in this study.
 
 
-% An example of a floating figure using the graphicx package.
-% Note that \label must occur AFTER (or within) \caption.
-% For figures, \caption should occur after the \includegraphics.
-% Note that IEEEtran v1.7 and later has special internal code that
-% is designed to preserve the operation of \label within \caption
-% even when the captionsoff option is in effect. However, because
-% of issues like this, it may be the safest practice to put all your
-% \label just after \caption rather than within \caption{}.
-%
-% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
-% option should be used if it is desired that the figures are to be
-% displayed while in draft mode.
-%
-%\begin{figure}[!t]
-%\centering
-%\includegraphics[width=2.5in]{myfigure}
-% where an .eps filename suffix will be assumed under latex, 
-% and a .pdf suffix will be assumed for pdflatex; or what has been declared
-% via \DeclareGraphicsExtensions.
-%\caption{Simulation results for the network.}
-%\label{fig_sim}
-%\end{figure}
-
-
-%
-% Note that often IEEE papers with subfigures do not employ subfigure
-% captions (using the optional argument to \subfloat[]), but instead will
-% reference/describe all of them (a), (b), etc., within the main caption.
-% Be aware that for subfig.sty to generate the (a), (b), etc., subfigure
-% labels, the optional argument to \subfloat must be present. If a
-% subcaption is not desired, just leave its contents blank,
-% e.g., \subfloat[].
-
-
-% An example of a floating table. Note that, for IEEE style tables, the
-% \caption command should come BEFORE the table and, given that table
-% captions serve much like titles, are usually capitalized except for words
-% such as a, an, and, as, at, but, by, for, in, nor, of, on, or, the, to
-% and up, which are usually not capitalized unless they are the first or
-% last word of the caption. Table text will default to \footnotesize as
-% the IEEE normally uses this smaller font for tables.
-% The \label must come after \caption as always.
-%
-%\begin{table}[!t]
-%% increase table row spacing, adjust to taste
-%\renewcommand{\arraystretch}{1.3}
-% if using array.sty, it might be a good idea to tweak the value of
-% \extrarowheight as needed to properly center the text within the cells
-%\caption{An Example of a Table}
-%\label{table_example}
-%\centering
-%% Some packages, such as MDW tools, offer better commands for making tables
-%% than the plain LaTeX2e tabular which is used here.
-%\begin{tabular}{|c||c|}
-%\hline
-%One & Two\\
-%\hline
-%Three & Four\\
-%\hline
-%\end{tabular}
-%\end{table}
-
-
-% Note that the IEEE does not put floats in the very first column
-% - or typically anywhere on the first page for that matter. Also,
-% in-text middle ("here") positioning is typically not used, but it
-% is allowed and encouraged for Computer Society conferences (but
-% not Computer Society journals). Most IEEE journals/conferences use
-% top floats exclusively. 
-% Note that, LaTeX2e, unlike IEEE journals/conferences, places
-% footnotes above bottom floats. This can be corrected via the
-% \fnbelowfloat command of the stfloats package.
-
-
-
-% trigger a \newpage just before the given reference
-% number - used to balance the columns on the last page
-% adjust value as needed - may need to be readjusted if
-% the document is modified later
-%\IEEEtriggeratref{8}
-% The "triggered" command can be changed if desired:
-%\IEEEtriggercmd{\enlargethispage{-5in}}
-
-% references section
-
-% can use a bibliography generated by BibTeX as a .bbl file
-% BibTeX documentation can be easily obtained at:
-% http://mirror.ctan.org/biblio/bibtex/contrib/doc/
-% The IEEEtran BibTeX style support page is at:
-% http://www.michaelshell.org/tex/ieeetran/bibtex/
 \bibliographystyle{IEEEtran}
-% argument is your BibTeX string definitions and bibliography database(s)
-\bibliography{IEEEabrv,bib}
-%
-% <OR> manually copy in the resultant .bbl file
-% set second argument of \begin to the number of references
-% (used to reserve space for the reference number labels box)
-%\begin{thebibliography}{1}
+\bibliography{bib}
 
-%\bibitem{IEEEhowto:kopka}
-%H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
-%  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
-
-%\end{thebibliography}
-
-
-
-
-% that's all folks
 \end{document}
 
 
