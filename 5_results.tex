@@ -2,7 +2,9 @@
 \label{sec:results}
 
 Table~\ref{tab:loglikelihood} summarizes the results of the
-experiments comparing the eight combinations over the different scenarios. 
+experiments comparing the eight combinations over the different
+scenarios. The empirical hybridization is denoted as \emph{EMP}, and
+the reduced representation as \emph{Red}.
 
 \begin{table}
   \caption{Log Likelihood Values for each scenario and
@@ -48,4 +50,34 @@ HSD to see which combination showed this difference ...
 To get a better intuition about what these results mean in concrete
 terms, we show a selection of the actual models... (explain heat map)
 
-* Heat Maps
+\begin{figure}
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{img/gaModel}
+  \caption{GAModel}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{img/SC-EMP-ga}
+  \caption{Spectral Clustering with Emp-GA}
+  \label{fig:sub2}
+\end{subfigure}\\
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{img/EMP-RED-ga}
+  \caption{EMP-GA with Reduced Representation}
+  \label{fig:sub3}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=1\linewidth]{img/realEastJapan_2010}
+  \caption{Earthquake Catalog}
+  \label{fig:sub4}
+\end{subfigure}
+\caption{Earthquake Risk Model Heatmaps, for scenario East Japan
+  2010. Darker colors correspond to higher number of earthquakes}
+\label{fig:test}
+\end{figure}
+
