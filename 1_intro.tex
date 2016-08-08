@@ -18,8 +18,8 @@ of these events.
 \begin{figure}[]
 \centering
 \includegraphics[width=.45\textwidth]{img/earthquakes2011.png}
-\caption{Seismic Activity in Eastern Japan in 2011. Each blue
-  represents one earthquake}
+\caption{Seismic Activity in Eastern Japan in 2011. Each dot
+  shows one earthquake}
 \label{GreatEastJapan}
 \end{figure}
 
@@ -48,19 +48,19 @@ the introduction of domain knowledge to the search. Therefore, we
 propose a hybrid version of the GAModel which incorporates seismic
 models of earthquake decay. In a two step process, the Genetic
 Algorithm first generates a set of mainshocks, then uses an adaptation
-of the Epidemic Type Aftershock Sequence (ETAS) to generate the
-aftershocks.
+of the Epidemic Type Aftershock Sequence
+(ETAS)~\cite{zhuang2004analyzing} to generate the aftershocks.
 
 The third issue is the examination of ``de-clustering'' effects in the
 historical catalog used for generating the risk model. In seismology,
 de-clustering refers to the act of identifying earthquakes as either
-main-shocks or aftershocks, and removing all but the main shocks from
+mainshocks or aftershocks, and removing all but the main shocks from
 the catalog, which is considered the representative earthquake for the
 group. Accordingly, a de-clustered earthquake catalog is considered to
 be easier to study, given that the de-clustering process removes
 redundant information~\cite{van2012seismicity}. In this work, we
 generate the de-clustered catalog by grouping earthquakes in space and
-time using spectral clustering~\cite{spectral_tutorial}.
+time using Spectral Clustering~\cite{spectral_tutorial}.
 
 These adaptions are described in detail in
 section~\ref{sec:adaptations}. We compare the contributions of each
