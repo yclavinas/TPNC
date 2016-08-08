@@ -3,7 +3,7 @@
 
 An Earthquake Risk model states the probability of earthquake
 occurrence on a defined area and time period. These models are often
-based on past ocurrence of earthquakes (historical catalogs).  They
+based on past occurrence of earthquakes (historical catalogs).  They
 can also make use of seismic properties of the area under study, such
 as faults, terrain properties, etc.
 
@@ -14,7 +14,7 @@ on the study of earthquake mechanisms and the generation of
 statistical models of earthquake risk~\cite{Nature1999}.
 
 In our previous work~\cite{ecta14}, we use a Genetic Algorithm (GA) to
-optimize an Earthquake Risk Model, which is described in the framework
+optimise an Earthquake Risk Model, which is described in the framework
 proposed by the Collaboratory for the Study of Earthquake
 Predictability (CSEP).
 
@@ -49,7 +49,7 @@ proposed the GAModel~\cite{ecta14}. The GAModel uses Genetic
 Algorithms to generate an earthquake risk model based on earthquake
 catalog data.
 
-In the GAModel, each individual is a candidade Risk Model, which is
+In the GAModel, each individual is a candidate Risk Model, which is
 equivalent to a prediction $\Lambda = \{\lambda_1, \lambda_2, \ldots,
 \lambda_n\}$ in the CSEP framework. The Genetic Algorithm will then
 select the individuals based on the log-likelihood between the model
@@ -58,18 +58,18 @@ occurrences in the target location and time period.
 
 \subsubsection*{Genome Representation}
 
-In the GAModel, each indian individual is represented as real valued
-array, where each element in the array is latitude/longitude bin in
-the target area for the desired model. Each bin is associated to a
-real value representing the earthquake risk in that location. For the
+In the GAModel, each individual is represented as real valued array,
+where each element in the array is latitude/longitude bin in the
+target area for the desired model. Each bin is associated to a real
+value representing the earthquake risk in that location. For the
 initial population, these values are drawn from an uniform
 distribution between 0 and 1.
 
 % TODO, maybe add the ``bins'' image from ECTA
 
 During fitness evaluation, the risk value at each bin is converted to
-an integer forecast, using a modification of the inverse poisson
-function depicted in algorith~\ref{inversePoisson}. In this algorithm,
+an integer forecast, using a modification of the inverse Poisson
+function depicted in algorithm~\ref{inversePoisson}. In this algorithm,
 $x$ is the real value to be converted and $\mu$ is the mean of
 earthquake observations across all bins in the catalog data.
 
@@ -98,7 +98,7 @@ bin. From $X$ we obtain the earthquake forecast $\Lambda =
 algorithm~\ref{inversePoisson}. This forecast is also the vector of
 earthquake quantity expectations.
 
-Let the set of earthquake ocurrences from the catalog be $\Omega =
+Let the set of earthquake occurrences from the catalog be $\Omega =
 \{\omega_1, \omega_2, \ldots, \omega_N\}$. The calculation of the
 log-likelihood value for the $\omega_i$ observation with a given
 expectation $\lambda$ is defined as:
@@ -128,7 +128,7 @@ Tournament Selection and Elitism. The chance for using crossover and
 mutation operators is tested independently for each individual in the
 new population.
 
-Valuse for the parameters for these operators are listed in
+Values for the parameters for these operators are listed in
 Table~\ref{GAParameters5.1}. These values are generally the same as
 used in~\cite{ecta14}.
 
@@ -174,7 +174,7 @@ can be achieved for teleseismic problems without any calculation of
 waves travel times.
 
 %PGA
-Another popular approach is to use EC methots do calculate the Peak
+Another popular approach is to use EC methods do calculate the Peak
 Ground Acceleration (PGA) parameter. The works done by Kerh et
 al.~\cite{Kerh2010, Kerh2015} are a combination of ANN and GA to
 estimate or predict PGA in Taiwan. Their goal was to decide which

@@ -2,7 +2,7 @@
 \label{sec:adaptations}
 
 In this work, we propose three improvements to the GAModel: A reduced
-genome representation, Hybridization with the ETAS empirical model,
+genome representation, Hybridisation with the ETAS empirical model,
 and the clustering of the earthquake catalog. Each of these changes
 are described below.
 
@@ -20,7 +20,7 @@ will be zero or close to it. To use this fact to decrease the
 search space, we propose a ``reduced'' representation of a risk Model.
 
 A summary of the reduced representation is as follows: First, before
-initializing the Genetic Algorithm, we estimate the expected total
+initialising the Genetic Algorithm, we estimate the expected total
 number of earthquakes in the model based on the past data. Then, this
 value is used as the total number of earthquakes to be added to the
 model. The reduced representation will be a vector of bin coordinates
@@ -57,12 +57,12 @@ algorithm~\ref{inversePoisson}.
 The reduced representation can use the same one point crossover as the
 GAModel, but a different mutation operation is required. The mutation
 operator works by selecting one element in the vector $V$, and drawing
-new values for the index and the estimation parameter from a unform
+new values for the index and the estimation parameter from a uniform
 distribution.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Hybridization with ETAS}
+\subsection{Hybridisation with ETAS}
 
 % Motivation
 The GAModel produces risk models without using any sort of domain
@@ -77,11 +77,11 @@ being commonly known as \emph{mainshocks} and
 
 To include this idea into the GAModel, we modify the process which
 generates a Model from an individual. In this modified process, one
-individial will only produce mainshocks into the model, afterwards the
+individual will only produce mainshocks into the model, afterwards the
 aftershock are derived from the mainshocks, using empirical seismic laws
 such as the \emph{modified Omori Law}.
 
-We define this hybridization between empirical seismic laws and the
+We define this hybridisation between empirical seismic laws and the
 GAModel as the \emph{EMP-GA}. Below, we detail the implementation of
 both steps.
 
@@ -133,15 +133,15 @@ defined as
 \end{equation}
 
 In this equation, $p$ and $c$ are
-constants. Utsu~\cite{utsu1995centenary}, summarize the studies of
+constants. Utsu~\cite{utsu1995centenary}, summarise the studies of
 this formula for the Japan case, and describe a range for these
-variables using the Davidon-Fletcher-Powell optimization
+variables using the Davidon-Fletcher-Powell optimisation
 procedure. These ranges, used in ETAS, are 0.9 to 1.4 for $p$, and
 0.003 and 0.3 for $c$.
 
 Also, $\Delta t$ is the time interval for how long a mainshock may
 influence or cause an aftershock. According to
-Yamanaka~\cite{yamanaka1990scaling}, this value must be choosen
+Yamanaka~\cite{yamanaka1990scaling}, this value must be chosen
 carefully, for a value too short will lead to a small number of
 aftershocks, while a value too long might confound aftershocks and
 background activity. His work suggests the values $p = 1.3$, $c =
@@ -156,8 +156,8 @@ the mainshock, using the formula
  K(M_i) = A\ exp([\alpha(M_i-M_c)]).
 \end{equation}
 
-Where $M_c = 3.0$ is the magnitude treshold and $\alpha(M)$ is defined
-as the inverse of the maginitude, according to
+Where $M_c = 3.0$ is the magnitude threshold and $\alpha(M)$ is defined
+as the inverse of the magnitude, according to
 Ogata~\cite{ogata2006space}. The area $A$ is obtained using the
 equation from Yamanaka~\cite{yamanaka1990scaling}
 
@@ -195,7 +195,7 @@ to be placed.
 %\end{subequations}
 
 % TODO: but WHAT is J(M)?
-Finaly, $J(M)$ is obtained by using the function \emph{etasim}, from
+Finally, $J(M)$ is obtained by using the function \emph{etasim}, from
 the SAPP \textit{R} package~\cite{webSapp} that simulates magnitude by
 Gutenberg-Richter’s Law.
 
@@ -220,7 +220,7 @@ The above equations are put together in algorithm~\ref{algoEquations}.
     \ENDFOR
     \ENDFOR
     % Need a more detailed algorithm for P(x,y)
-    \STATE Use P(x,y) to distribute aftershocks to neighbor bins
+    \STATE Use P(x,y) to distribute aftershocks to neighbour bins
   \end{algorithmic}
 \end{algorithm}
 
@@ -262,7 +262,7 @@ earthquakes.
 
 Let the earthquake catalog data be represented as a vector $X = \{x_1,
 x_2, \ldots, x_n\ in \Re_d\}$, where $n$ is the number of earthquakes
-in the catalog, $d$ is the number of attributes that characterize an
+in the catalog, $d$ is the number of attributes that characterise an
 earthquake in the catalog, and $K$ is the desired number of
 clusters. The clusters are calculated following
 algorithm~\ref{spectralclustering}
@@ -285,7 +285,7 @@ algorithm~\ref{spectralclustering}
     \STATE Compute Matrix $L = D - S$
     \STATE Compute $K$ smallest eigenvectors of $L$
     \STATE Compute matrix $V = (v_{ij})_{nxK}$, using these eigenvactors as columns.
-    \STATE Compute matrix $U = (u_{ij})_{nxK}$, normalizing the rows
+    \STATE Compute matrix $U = (u_{ij})_{nxK}$, normalising the rows
     of $V$ such as $u_{i,j} = v_{i,j}/\sqrt{\sum_jv^2_{ij}}$
     \STATE Let each row in $U$ represent a data point, and cluster
     these points using k-means
@@ -296,7 +296,7 @@ algorithm~\ref{spectralclustering}
 \end{algorithm}
 
 In this algorithm, $||x_i-x_j||$ is the Euclidean distance between
-data points $x_i,x_j$. We use the number of nearest neighbors equal to
+data points $x_i,x_j$. We use the number of nearest neighbours equal to
 five, and $\sigma$, the kernel parameter, equal to $100$.
 
 % TODO: Minutes is divided by 1000 to make the values smaller

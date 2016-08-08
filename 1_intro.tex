@@ -7,7 +7,7 @@ rupture, movement, tsunami, etc. Some recent earthquakes that
 highlight this destructive potential are the great East Japan
 Earthquake of 2011 (depicted in figure\ref{GreatEastJapan}), and the
 April 2015 earthquake in Nepal. One important tool for the enactment
-of policies that minimize the consequences of these events are
+of policies that minimise the consequences of these events are
 earthquake occurrence models (also called risk models). These models
 can be used to identify patterns in the seismic mechanisms that
 generate earthquakes, and are important to increase our understanding
@@ -39,14 +39,14 @@ The first issue is that the genome representation used by GAModel has
 too many parameters (over 2000 for regular cases). Even though a
 majority of these parameters do not contribute for the accuracy of the
 final risk model, the size of the search space implies a slower
-optimization time. To address this issue, we propose a new genome
+optimisation time. To address this issue, we propose a new genome
 representation for an earthquake risk model, which we will call
 ``Reduced Representation''. In the Reduced Representation, we avoid
 representing every single location in the area under study, and only
 those locations with a minimal probability of earthquake are
 represented as parameters in the evolutionary process. By reducing the
 search space, this representation is expected to also increase the
-convergence speed of the evolutionary optimization process.
+convergence speed of the evolutionary optimisation process.
 
 % Second issue: Hybridization with domain knowledge
 The second issue is that GAModel does not take into account any sort
@@ -75,14 +75,14 @@ time using spectral clustering~\cite{spectral_tutorial}.
 These adaptions are described in detail in
 section~\ref{sec:adaptations}. We compare the contributions of each
 adaptation to the generation of models based on the earthquake catalog
-of the Japanese arquipelago, between 2000 and 2010. The set up of this
+of the Japanese archipelago, between 2000 and 2010. The set up of this
 experiment is described in section~\ref{sec:experiment},
 and the main results are listed in section~\ref{sec:results}.
 
 Our results indicate that clustering the earthquake catalog resulted
 in a significant improvement to the precision of the models
 generated. On the other hand, the new representation and the
-hybridization did not seem to improve the results of our models. We
+hybridisation did not seem to improve the results of our models. We
 discuss the implications of these findings in
 section~\ref{sec:discussion}.
 
