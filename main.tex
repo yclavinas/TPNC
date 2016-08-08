@@ -1,28 +1,8 @@
-\documentclass[conference,compsoc]{IEEEtran}
-
-\ifCLASSOPTIONcompsoc
-  % IEEE Computer Society needs nocompress option
-  % requires cite.sty v4.0 or later (November 2003)
-  \usepackage[nocompress]{cite}
-\else
-  % normal IEEE
-  \usepackage{cite}
-\fi
+\documentclass{llncs}
 
 \usepackage[pdftex]{graphicx}
-% declare the path(s) where your graphic files are
-% \graphicspath{{../pdf/}{../jpeg/}}
-% and their extensions so you won't have to specify these with
-% every instance of \includegraphics
-% \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
-
 \usepackage{amsmath}
 
-% Removido -- Claus. Estes dois pacotes sao necessarios?
-%\usepackage[export]{adjustbox}
-%\usepackage{pdfpages}% incluir PDFs, usado no apêndice
-
-%\usepackage[brazil,american]{babel}
 \usepackage[T1]{fontenc}
 \usepackage{indentfirst}
 %\usepackage{natbib}
@@ -35,106 +15,50 @@
 \usepackage{algorithmic}
 \usepackage{graphicx}
 \usepackage{lipsum}
-% Note that the amsmath package sets \interdisplaylinepenalty to 10000
-% thus preventing page breaks from occurring within multiline equations. Use:
-%\interdisplaylinepenalty=2500
-% after loading amsmath to restore such page breaks as IEEEtran.cls normally
-
-%\usepackage{algorithmic}
-%\usepackage{array}
-
-% *** SUBFIGURE PACKAGES ***
-%\ifCLASSOPTIONcompsoc
-%  \usepackage[caption=false,font=footnotesize,labelfont=sf,textfont=sf]{subfig}
-%\else
-%  \usepackage[caption=false,font=footnotesize]{subfig}
-%\fi
-
-%\usepackage{fixltx2e}
-% fixltx2e, the successor to the earlier fix2col.sty, was written by
-% Frank Mittelbach and David Carlisle. This package corrects a few problems
-% in the LaTeX2e kernel, the most notable of which is that in current
-
-%\usepackage{stfloats}
-% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
-% the ability to do double column floats at the bottom of the page as well
-% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
-% LaTeX2e). It also provides a command:
-%\fnbelowfloat
-% to enable the placement of footnotes below bottom floats (the standard
-% LaTeX2e kernel puts them above bottom floats). This is an invasive package
-
-% *** PDF, URL AND HYPERLINK PACKAGES ***
-%
-%\usepackage{url}
-
-% correct bad hyphenation here
-\hyphenation{op-tical net-works semi-conduc-tor}
 
 
 \begin{document}
 
-\title{Improving the Generation of Earthquake Risk Models\\ Using
+\title{Improving the Generation of Earthquake Risk Models Using
   Evolutionary Algorithms Tempered by Domain Knowledge}
 
+\author{
+  Yuri Lavinas\inst{1} \and 
+  Xiucai Ye\inst{2} \and 
+  Marcelo Ladeira\inst{3} \and 
+  Claus Aranha\inst{4}
+}
 
-% author names and affiliations
-% use a multiple column layout for up to three different
-% affiliations
-\author{\IEEEauthorblockN{Yuri Lavinas}
-\IEEEauthorblockA{University of Brasilia\\
-Computer Science Department\\
-yclavinas@gmail.com}
-\and
-\IEEEauthorblockN{Xiucai Ye}
-\IEEEauthorblockA{University of Tsukuba\\
-  Graduate School of SIE\\
-yexiucai@mma.cs.tsukuba.ac.jp}
-\and
-\IEEEauthorblockN{Marcelo Ladeira}
-\IEEEauthorblockA{University of Brasilia\\
-Computer Science Department\\
-mladeira@unb.br}
-\and
-\IEEEauthorblockN{Claus Aranha}
-\IEEEauthorblockA{University of Tsukuba\\
-Graduate School of SIE\\
-caranha@cs.tsukuba.ac.jp}}
+\institute{ 
+  University of Brasilia, Computer Science Department
+  \email{yclavinas@gmail.com} \and 
+  University of Tsukuba, Graduate School of SIE 
+  \email{yexiucai@mma.cs.tsukuba.ac.jp} \and 
+  University of Brasilia, Computer Science Department 
+  \email{mladeira@unb.br} \and 
+  University of Tsukuba, Graduate School of SIE
+  \email{caranha@cs.tsukuba.ac.jp}}
 
 \maketitle
 
-% As a general rule, do not put math, special symbols or citations
-% in the abstract
 \begin{abstract}
-
-% File with the abstract
 \input{0_abstract.tex}
-
 \end{abstract}
-
-% no keywords
-
-% For peerreview papers, this IEEEtran command inserts a page break and
-% creates the second title. It will be ignored for other modes.
-\IEEEpeerreviewmaketitle
 
 % Main file with the paper
 \input{1_intro.tex}
-\input{2_background.tex} % Earthquake model, CSEP, references (including italy)
+\input{2_background.tex} 
 \input{3_proposed.tex}
 \input{4_experiment.tex}
 \input{5_results.tex}
 \input{6_discussion.tex}
 \input{7_conclusion.tex}
 
-\section*{Acknowledgments}
+\subsubsection*{Acknowledgments.} 
 The authors would like to thank the Japan Meteorological Agency for
 making available the earthquake catalog used in this study.
 
-
-\bibliographystyle{IEEEtran}
+\bibliographystyle{splncs03}
 \bibliography{bib}
 
 \end{document}
-
-
