@@ -1,5 +1,18 @@
 \section{Discussion}
 \label{sec:discussion}
 
-Clustering is good. It is okay if Reduced GA is not worse, because
-"lower search space"
+From the results in Table~\ref{tab:loglikelihood}, we can see clearly
+that using spectral-clustering to pre-process the data has a positive
+effect on the quality of the final risk model. The analysis of the
+effect on Figure~\ref{fig:Dunnet} also shows that models using the
+reduced representation perform as well as the GAModel, with a much
+smaller representation.
+
+On the other hand, the use of the modified ETAS equation to generate
+aftershocks in the model seems to have a negative effect on the
+quality of the model. Whether this is because of bad parameters, or
+due to poor modeling of the empirical equations is worthy of further
+investigation. Figure~\ref{fig:heatmap} seems to suggest that the EMP
+modification is overestimating the number of earthquakes, when
+compared to the other models.
+
