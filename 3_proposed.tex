@@ -14,22 +14,9 @@ corresponds to an element in the vector. As the number of bins in a
 region numbers into the thousands, this representation leads to a huge
 search space to be explored.
 
-We have observed that in many cases, the vector of catalog
-earthquakes is sparse. In other words, most of the elements of $X$
-will be zero or close to it. To use this fact to decrease the
-search space, we propose a ``reduced'' representation of a risk Model.
-
-A summary of the reduced representation is as follows: First, before
-initialising the Genetic Algorithm, we estimate the expected total
-number of earthquakes in the model based on the past data. Then, this
-value is used as the total number of earthquakes to be added to the
-model. The reduced representation will be a vector of bin coordinates
-for each of these earthquakes, representing their position inside the
-target area. This is much smaller than a representation including each
-bin as an element.
-
-
-\subsubsection*{Implementation}
+We have observed that in many cases, the vector of catalog earthquakes
+is sparse. To use this fact to decrease the search space, we propose a
+``reduced'' representation of a risk Model.
 
 The reduced representation is a vector $V$ of ordered pairs. The first
 element of this pair is the integer index that identify a bin in the
@@ -46,18 +33,13 @@ intermediate steps. The first one is to transform the reduced
 representation into a regular representation. This is achieved by
 copying the estimated value of an element to the bin indicated by
 stored index for that element. Bins that are not indicated by any
-element in the vector are set to zero estimated earthquakes.
+element in the vector are set to zero estimated earthquakes. The
+second step is to apply the inverse Poisson on the estimated values to
+retrieve the number of earthquakes.
 
-The second step is to apply the inverse Poisson on the estimated
-values to retrieve the number of earthquakes, as described in
-algorithm~\ref{inversePoisson}.
-
-\subsubsection*{Operators}
-
-The reduced representation can use the same one point crossover as the
-GAModel, but a different mutation operation is required. The mutation
-operator works by selecting one element in the vector $V$, and drawing
-new values for the index and the estimation parameter from a uniform
+Using the reduced representation requires us to change the mutation
+operator. The mutation operator selects one element in the vector and
+draw new values for the index and estimation parameter from a uniform
 distribution.
 
 
@@ -75,21 +57,9 @@ usually followed by a wave of smaller earthquakes, these pairings
 being commonly known as \emph{mainshocks} and
 \emph{aftershocks}~\cite{schorlemmer2010first}.
 
-To include this idea into the GAModel, we modify the process which
-generates a Model from an individual. In this modified process, one
-individual will only produce mainshocks into the model, afterwards the
-aftershock are derived from the mainshocks, using empirical seismic laws
-such as the \emph{modified Omori Law}.
-
-We define this hybridisation between empirical seismic laws and the
-GAModel as the \emph{EMP-GA}. Below, we detail the implementation of
-both steps.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection*{Implementation}
-
-The EMP-GA generates models with mainshocks and aftershocks following
-a two-step procedure.
+Therefore, we introduce this idea by modifying the proccess which
+generates a model from an individual into a two step procedure, named
+\emph{EMP-GA}.
 
 In the first step, we use the GAModel to generate a set of mainshock
 earthquakes, which we will refer to as \emph{synthetic mainshock
@@ -97,9 +67,7 @@ earthquakes, which we will refer to as \emph{synthetic mainshock
 obtain the aftershocks from the synthetic mainshock data, and add them
 to the model.
 
-The process we use to generate aftershocks from the synthetic
-mainshock data is inspired by the space-time epidemic-type aftershock
-sequence (ETAS). The total number of earthquakes in a bin is given as
+The total number of earthquakes in a bin is given as
 % TODO: Sentar com o Yuri e pedir para ele me explicar a
 % implementacao/razao desta equacao detalhe por detalhe.
 \begin{equation}\label{emp-model}
@@ -140,12 +108,11 @@ procedure. These ranges, used in ETAS, are 0.9 to 1.4 for $p$, and
 0.003 and 0.3 for $c$.
 
 Also, $\Delta t$ is the time interval for how long a mainshock may
-influence or cause an aftershock. According to
-Yamanaka~\cite{yamanaka1990scaling}, this value must be chosen
-carefully, for a value too short will lead to a small number of
-aftershocks, while a value too long might confound aftershocks and
-background activity. His work suggests the values $p = 1.3$, $c =
-0.003$, and $\Delta t = 30$ days, which we use in this paper.
+influence or cause an aftershock. A value too short will lead to a
+small number of aftershocks, while a value too long might confound
+aftershocks and background activity. Previous work suggests the values
+$p = 1.3$, $c = 0.003$, and $\Delta t = 30$
+days~\cite{yamanaka1990scaling}.
 
 The total amount of events triggered by a mainshock is represented in
 equation~\ref{emp-model} as $K(M_i)$. To calculate this value,
@@ -165,10 +132,8 @@ equation from Yamanaka~\cite{yamanaka1990scaling}
 A = e^{(1.02M -4)}.
 \end{equation}
 
-Using the number of triggered events per magnitude $K(Mi)$, and the
-Modified Omori PDF $g(t)$, it is possible to calculate the total
-number of earthquakes generated from a mainshock, by iterating
-over $t_i$:
+Using $K(Mi)$ and $g(t)$, it is possible to calculate the total number
+of earthquakes generated from a mainshock, by iterating over $t_i$:
 \begin{equation}
 \displaystyle\sum_{t_i \in t} K(M_i)g(t-t_i)
 \end{equation}
@@ -176,12 +141,11 @@ over $t_i$:
 % TODO: From this description, it does not seem that P(x,y) is actually
 % part of equation emp-model: double check with Yuri.
 The resulting aftershocks need to be spread on bins near the mainshock
-position. The $P(x,y)$ component of equation~\ref{emp-model} fills
-this role. It calculates the position of the aftershocks based on the
-position of the original mainshock. It simply places each aftershock
-either north, south, east or west of the mainshock, getting further
-from the origin after each iteration, until there are no more events
-to be placed.
+position. The $P(x,y)$ component of equation~\ref{emp-model}
+calculates the position of the aftershocks based on the position of
+the original mainshock. It simply places each aftershock either north,
+south, east or west of the mainshock, getting further from the origin
+after each iteration, until there are no more events to be placed.
 
 %% This equation is not clear -- where is the component that place
 %% Aftershocks further away from the origin?
@@ -196,33 +160,8 @@ to be placed.
 
 % TODO: but WHAT is J(M)?
 Finally, $J(M)$ is obtained by using the function \emph{etasim}, from
-the SAPP \textit{R} package~\cite{webSapp} that simulates magnitude by
+the SAPP \textit{R} package that simulates magnitude by
 Gutenberg-Richter’s Law.
-
-The above equations are put together in algorithm~\ref{algoEquations}.
-
-\begin{algorithm}[H]\label{algoEquations}
-  \caption{Aftershock distribution from empirical laws}
-  \begin{algorithmic}
-    \STATE FOR EACH BIN:
-    \IF {Number of earthquakes in bin > 12} % Why?
-    \STATE {Reduce number of earthquakes in bin to 12}
-    \ENDIF
-    \STATE aftershocks = 0
-    \STATE magnitude values for earthquakes in bin = J(M)
-    % What does this mean?
-    % \STATE model  = attributeMagnitudeToEarthquake(model, J(M) )
-    % \STATE magnitudes = getMagnitudeMainshock(model)
-    
-    \FOR{magnitude in magnitudes} 
-    \FOR{t in time} 
-    \STATE aftershocks += g(t)*K(magnitude)
-    \ENDFOR
-    \ENDFOR
-    % Need a more detailed algorithm for P(x,y)
-    \STATE Use P(x,y) to distribute aftershocks to neighbour bins
-  \end{algorithmic}
-\end{algorithm}
 
 % TODO: Probably needs a longer explanation of ETAS in the
 % Bibliography section.
@@ -230,21 +169,14 @@ The above equations are put together in algorithm~\ref{algoEquations}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
 \subsection{Clustering the Catalog Data}
 
-The third adaptation to the GAModel that we study in this paper is the
-clustering of the earthquake catalog data using Spectral
-Clustering. Unlike the two adaptations described beforehand, this one
-does not require any change on the algorithm itself, happening instead
-as a data pre-processing step when building the model. After the
-catalog data is pre-processed, the Genetic Algorithm is applied
-normally, using the de-clustered data for fitness evaluation.
-
-This pre-processing step aims to remove redundant information from the
-catalog, by clustering together earthquakes which are closely related
-in a mainshock/aftershock relationship~\cite{van2012seismicity}.
-
-However, because it is difficult to determine exactly when two
-earthquakes should be clustered together, we choose a non-supervised
-method, Spectral Clustering, to generate the clusters.
+The third adaptation to the GAModel is the pre-processing of the
+earthquake catalog data using Spectral Clustering. This pre-processing
+step aims to remove redundant information from the catalog, by
+clustering together earthquakes which are closely related in a
+mainshock/aftershock relationship~\cite{van2012seismicity}. Because it
+is difficult to determine exactly when two earthquakes should be
+clustered together, we choose a non-supervised method to generate the
+clusters.
 
 Spectral Clustering involves constructing a similarity matrix of the
 elements to be clustered, finding the k-Nearest-Neighbours graph (KNN)
@@ -268,30 +200,23 @@ clusters. The clusters are calculated following
 algorithm~\ref{spectralclustering}
 
 % TODO: Probably needs to include how to calculate KNN
-\begin{algorithm}[H]\label{spectralclustering}
+\begin{algorithm}[H]
   \caption{Spectral Clustering}
+  \label{spectralclustering}
   \begin{algorithmic}
     \STATE{Construct the similarity matrix S}
-    \FOR{i in $X$}
-    \FOR{j in $X$}
-    \IF{$i$ and $j$ are connected in the KNN graph}
-    \STATE{$s_{i,j} = \exp(-||x_i-x_j||^2/2\sigma^2$}
-    \ELSE
-    \STATE{$s_{i,j} = 0$}
-    \ENDIF
-    \ENDFOR
+    \FOR{i,j in $X$}
+    \STATE{IF $i$ and $j$ are connected in the KNN graph THEN $s_{i,j} = \exp(-||x_i-x_j||^2/2\sigma^2$}
+    \STATE{ELSE $s_{i,j} = 0$}
     \ENDFOR
     \STATE Matrix $D = n x n$ diagonal matrix where $d_{i,i} = \sum^n_{j=1}s_{ij}$
-    \STATE Compute Matrix $L = D - S$
-    \STATE Compute $K$ smallest eigenvectors of $L$
+    \STATE Compute Matrix $L = D - S$ and the $K$ smallest eigenvectors of $L$
     \STATE Compute matrix $V = (v_{ij})_{nxK}$, using these eigenvactors as columns.
     \STATE Compute matrix $U = (u_{ij})_{nxK}$, normalising the rows
     of $V$ such as $u_{i,j} = v_{i,j}/\sqrt{\sum_jv^2_{ij}}$
     \STATE Let each row in $U$ represent a data point, and cluster
     these points using k-means
-    \FOR{each point $x_i$ in $X$}
-    \STATE Assign the cluster of $u_i$ to $x_i$
-    \ENDFOR
+    \STATE{FOR each point $x_i$ in $X$ DO Assign the cluster of $u_i$ to $x_i$}
   \end{algorithmic}
 \end{algorithm}
 
@@ -302,10 +227,5 @@ five, and $\sigma$, the kernel parameter, equal to $100$.
 % TODO: Minutes is divided by 1000 to make the values smaller
 We cluster the earthquakes based on their latitude, longitude, time
 (in minutes), and depth. By observing the distributions of the
-eigenvectors, we defined the weight of each dimension in the algorithm:
-
-\begin{itemize}
-\item latitude and longitude: 150
-\item time: 7
-\item Depth: 0.5
-\end{itemize}
+eigenvectors, we defined the weight of each dimension in the
+algorithm: \emph{latitude and longitude: 150, time: 7, Depth: 0.5}

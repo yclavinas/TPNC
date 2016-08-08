@@ -1,29 +1,18 @@
 Earthquake Risk Models describe the risk of occurrence of seismic
-events on a given area based on information such as past earthquakes
+events on an area based on information such as past earthquakes
 in nearby regions and the seismic properties of the area under study.
 These models can be used to help to better understand earthquakes,
 their patterns and their mechanisms.
 
-In previous work, we showed that Genetic Algorithms (GA) could
-generate risk models with the same degree of precision as the Relative
-Intensity (RI) method, which is considered a benchmark for this
-problem.  However, a few shortcomings were also defined in that
-approach: (1) The representation of the model in the Genetic Algorithm
-was too sparse, (2) Domain knowledge was not used to create the model,
-and (3) The relationship between foreshocks and aftershocks were not 
-taken into account.
-
-In this work, we try to address these three concerns. We propose a new
-representation of a seismic risk model to be used as the genome of the
-Genetic Algorithm. We introduces a hybrid model that incorporates
-seismic theories about earthquake distribution (such as the Omori-Utsu
-formula). And we use clustering to filter the earthquake catalog in
-order to remove earthquakes that are likely to be aftershocks before
-generating the risk model.
+In previous work, we showed that Genetic Algorithms can be used to
+generate earthquake risk models. However, we also noticed some
+shortcomings in that approach. We propose three improvements to
+address these shortcomings: A new representation that reduces the
+search space, a hibridisation process that uses seismic equations to
+generate the risk model from the GA representation using domain
+knowledge, and a pre-processing step for the training data using
+clustering.
 
 We examine each of these changes through simulations using the catalog
-of Japanese earthquakes between 2000 and 2010. According to our
-results, clustering the earthquake catalog produces better models,
-while the proposed changes to representation did not show such a clear
-effect. These results allow us to draw recommendations for future
-developments.
+of Japanese earthquakes between 2000 and 2010, and indicate the
+contribution of each proposal to the quality of generated models.
